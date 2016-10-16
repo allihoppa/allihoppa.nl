@@ -1,0 +1,16 @@
+/downloaded
+/docker/mysql/*.sql
+!/environment/prod
+/environment/prod/*
+!/environment/prod/.gitkeep
+!/mysql
+/mysql/*
+!/mysql/.gitkeep
+/public/wordpress
+/public/wp-content/languages
+/public/wp-content/plugins
+/public/wp-content/themes/*
+!/public/wp-content/themes/allihoppa
+/public/wp-content/uploads
+/release
+/vendor/

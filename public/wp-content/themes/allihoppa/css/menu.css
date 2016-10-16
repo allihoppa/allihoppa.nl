@@ -1,0 +1,97 @@
+/* navigation - pages */
+#header .menu {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 34px;
+	color: #fff;
+	text-align: center;
+}
+
+#header .menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+#header .menu li {
+	padding: 0;
+	margin: 0;
+	display: inline;
+}
+
+/* main pages */
+#header .page_item {
+	padding: 0;
+	margin: 0;
+	border: 0;	
+	text-align: left;
+}
+
+#header .page_item a:link, #header .page_item a:visited {	
+	margin: 0;
+	padding: 5px 10px;
+	height: 24px;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+	color: #fff; 
+	text-decoration: none;
+	text-transform: lowercase;
+	line-height: 34px;  
+	font-size: 16px;
+}
+
+#header .page_item a:hover, #header .page_item a:active, #header .current_page_item a:link, #header .current_page_item a:visited, #header .current_page_ancestor a:link, #header .current_page_ancestor a:visited {
+	color: #fff;
+	text-decoration: underline;
+}
+
+/* Mobile menu */
+#header .page-dropdown {
+	float: left;
+	width: 280px;
+	padding: 5px;
+	margin: 20px;
+	background: #fff;
+	border: 0;
+	font-family: 'Nunito', sans-serif;
+	font-size: 16px;
+}
+
+/* category */
+#header .catmenu {
+	float: left;
+	padding: 5px 0 5px 0;
+	margin: 0;
+	background: #fff;
+	width: 100%;
+	min-height: 42px;
+	text-align: center;
+}
+
+#header .catmenu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	line-height: 42px;
+}
+
+#header .catmenu li {
+	padding: 0 8px 0 8px;
+	margin: 0;
+	display: inline;
+	font-size: 14px;
+}
+
+#header .catmenu li a {
+	font-family: 'Nunito', sans-serif;
+	padding: 5px 0;
+	font-size: 16px;
+}
+
+#header .catmenu li.current_cat a { 
+	text-decoration: underline;
+}
+

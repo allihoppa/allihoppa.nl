@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Can be used as a shortcut to run composer in the build container
+DIR=`dirname $(readlink -f $0)`
+$DIR/run-command-in-build-container composer "$@"

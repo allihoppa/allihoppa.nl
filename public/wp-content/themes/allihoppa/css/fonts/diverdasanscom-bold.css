@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'DiverdaSansComBold';
+    src: url('diverdasanscom-bold.eot');
+    src: url('diverdasanscom-bold.eot') format('embedded-opentype'),
+         url('diverdasanscom-bold.woff') format('woff'),
+         url('diverdasanscom-bold.ttf') format('truetype'),
+         url('diverdasanscom-bold.svg#DiverdaSansComBold') format('svg');
+}

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# Runs commands in container.
+#
+# Can be used tools like composer, phpunit etc. on the exact same software versions as the application itself runs on.
+
+# Run command under current user
+docker-compose run --rm -u $UID wordpress-build "$@"

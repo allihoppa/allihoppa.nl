@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'AllihoppaLeesTekst';
+    src: url('fonts/diverdasanscom-light.eot');
+    src: url('fonts/diverdasanscom-light.eot') format('embedded-opentype'),
+         url('fonts/diverdasanscom-light.woff') format('woff'),
+         url('fonts/diverdasanscom-light.ttf') format('truetype'),
+         url('fonts/diverdasanscom-light.svg#DiverdaSansComLight') format('svg');
+}
+
+@font-face {
+    font-family: 'AllihoppaLeesTekstBold';
+    src: url('fonts/diverdasanscom-bold.eot');
+    src: url('fonts/diverdasanscom-bold.eot') format('embedded-opentype'),
+         url('fonts/diverdasanscom-bold.woff') format('woff'),
+         url('fonts/diverdasanscom-bold.ttf') format('truetype'),
+         url('fonts/diverdasanscom-bold.svg#DiverdaSansComBold') format('svg');
+}
