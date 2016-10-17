@@ -13,4 +13,5 @@
 !/public/wp-content/themes/allihoppa
 /public/wp-content/uploads
 /release
-/vendor/
+/public/components/
+/public/vendor/
