@@ -1,3 +1,4 @@
+/bower_components
 /downloaded
 /docker/mysql/*.sql
 !/environment/prod
@@ -6,12 +7,16 @@
 !/mysql
 /mysql/*
 !/mysql/.gitkeep
+/node_modules
 /public/wordpress
 /public/wp-content/languages
 /public/wp-content/plugins
 /public/wp-content/themes/*
 !/public/wp-content/themes/allihoppa
+/public/wp-content/themes/allihoppa/js/jquery.easing.min.js
+/public/wp-content/themes/allihoppa/js/jquery.jcarousel.min.js
+/public/wp-content/themes/allihoppa/js/jquery.min.js
+/public/wp-content/themes/allihoppa/js/jquery.vgrid.min.js
 /public/wp-content/uploads
 /release
-/public/components/
-/public/vendor/
+/vendor/

@@ -1,17 +1,17 @@
 version: "2"
 
 services:
-  wordpress-build:
-    image: allihoppa/allihoppa.nl:build
-    container_name: allihoppa-nl-wordpress-build
+  php-build:
+    image: allihoppa/allihoppa.nl:php-build
+    container_name: allihoppa-nl-php-build
     build:
       context: ./docker/build
     volumes:
-      - ./public:/var/www
+      - ./:/var/www
       - ~/.composer/:/home/.composer
+    user: $HOST_UID:$HOST_GID
     environment:
-      HOME: /home/$LOCAL_USER_ID
-      LOCAL_USER_ID: $LOCAL_USER_ID
+      HOME: /home
       SYMFONY_ENV: "dev"
       # Add the GITHUB_TOKEN which is needed to setup Composer authentication configuration.
       # This value is taken from a variable, or as the docs say:
@@ -19,6 +19,25 @@ services:
       # which can be helpful for secret or host-specific values."
       # See: # https://docs.docker.com/compose/compose-file/#/environment
       GITHUB_TOKEN: $GITHUB_TOKEN
+
+  js-build:
+    container_name: allihoppa-nl-js-build
+    image: allihoppa/allihoppa.nl:js-build
+    build:
+      context: ./docker/js-build
+    user: $HOST_UID:$HOST_GID
+    environment:
+      HOME: /home
+    volumes:
+      # Bower config
+      - ~/.config/configstore/bower:/home/.config/configstore/bower
+      - ~/.cache/bower:/home/.cache/bower
+      - ~/.local/bower:/home/.local/bower
+      # NPM config
+      - ~/.npm/:/home/.npm/
+      # Workspace
+      - ./:/workspace/
+    command: sh -c "npm install --no-optional && gulp"
 
   wordpress:
     image: allihoppa/allihoppa.nl:base
