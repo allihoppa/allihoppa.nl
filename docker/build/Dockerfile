@@ -1,4 +1,4 @@
-FROM allihoppa/allihoppa.nl
+FROM allihoppa/allihoppa.nl:base
 
 # Install Composer + Git + Zip so it can fetch from various sources
 RUN apt-get update \
