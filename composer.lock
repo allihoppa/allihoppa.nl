@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e42cc75207f6f63114f76a29eacd4611",
+    "content-hash": "33ce2e6b0a7547380e25deea12cd7c9a",
     "packages": [
         {
             "name": "atypisch/category-colors",
