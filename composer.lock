@@ -4,9 +4,36 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ca68f21c008fe2cdb9d83e96ef15a58c",
-    "content-hash": "0f74f7705e217682683e09710a74d612",
+    "content-hash": "e42cc75207f6f63114f76a29eacd4611",
     "packages": [
+        {
+            "name": "atypisch/category-colors",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin.git",
+                "reference": "113f0750fac524bbf602da84478125082937c371"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lucasvanlierop/atypisch-wp-category-colors-plugin/zipball/113f0750fac524bbf602da84478125082937c371",
+                "reference": "113f0750fac524bbf602da84478125082937c371",
+                "shasum": ""
+            },
+            "type": "wordpress-plugin",
+            "authors": [
+                {
+                    "name": "Marten Timan",
+                    "email": "marten@atypisch.nl"
+                }
+            ],
+            "description": "Wordpress category-colors plugin",
+            "support": {
+                "source": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin/tree/master",
+                "issues": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin/issues"
+            },
+            "time": "2017-08-01T19:24:29+00:00"
+        },
         {
             "name": "composer/installers",
             "version": "v1.2.0",
@@ -112,7 +139,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2016-08-13 20:53:52"
+            "time": "2016-08-13T20:53:52+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
@@ -149,7 +176,7 @@
                 "blog",
                 "cms"
             ],
-            "time": "2014-04-08 18:15:51"
+            "time": "2014-04-08T18:15:51+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -197,7 +224,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2015-06-11 15:15:30"
+            "time": "2015-06-11T15:15:30+00:00"
         },
         {
             "name": "koodimonni-language/nl_nl",
@@ -503,7 +530,7 @@
                 }
             ],
             "description": "Do what the fuck you want with your composer packages aka. Composer Dropin installer. Install packages or part of packages into custom paths without overwriting existing stuff.",
-            "time": "2016-07-11 09:21:59"
+            "time": "2016-07-11T09:21:59+00:00"
         },
         {
             "name": "wpackagist-plugin/adminimize",
@@ -516,7 +543,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/adminimize.1.8.4.zip",
-                "reference": null,
+                "reference": "tags/1.8.4",
                 "shasum": null
             },
             "require": {
@@ -536,7 +563,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/advanced-custom-fields.4.3.5.zip",
-                "reference": null,
+                "reference": "tags/4.3.5",
                 "shasum": null
             },
             "require": {
@@ -556,7 +583,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/akismet.2.6.1.zip",
-                "reference": null,
+                "reference": "tags/2.6.1",
                 "shasum": null
             },
             "require": {
@@ -576,7 +603,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/all-in-one-seo-pack.2.1.4.zip",
-                "reference": null,
+                "reference": "tags/2.1.4",
                 "shasum": null
             },
             "require": {
@@ -596,7 +623,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/coschedule-by-todaymade.2.1.5.zip",
-                "reference": null,
+                "reference": "tags/2.1.5",
                 "shasum": null
             },
             "require": {
@@ -616,7 +643,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.0.8.2.zip",
-                "reference": null,
+                "reference": "tags/0.8.2",
                 "shasum": null
             },
             "require": {
@@ -636,7 +663,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/duplicate-post.2.6.zip",
-                "reference": null,
+                "reference": "tags/2.6",
                 "shasum": null
             },
             "require": {
@@ -656,7 +683,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/page-excerpt.1.3.zip",
-                "reference": null,
+                "reference": "tags/1.3",
                 "shasum": null
             },
             "require": {
@@ -676,7 +703,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/pinterest-verify.1.0.2.zip",
-                "reference": null,
+                "reference": "tags/1.0.2",
                 "shasum": null
             },
             "require": {
@@ -696,7 +723,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/post-thumbnail-editor.2.3.0.zip",
-                "reference": null,
+                "reference": "tags/2.3.0",
                 "shasum": null
             },
             "require": {
@@ -716,7 +743,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/simple-page-ordering.2.2.zip",
-                "reference": null,
+                "reference": "tags/2.2",
                 "shasum": null
             },
             "require": {
@@ -736,7 +763,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/taxonomy-terms-order.1.3.6.zip",
-                "reference": null,
+                "reference": "tags/1.3.6",
                 "shasum": null
             },
             "require": {
@@ -756,7 +783,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wordpress-importer.0.6.1.zip",
-                "reference": null,
+                "reference": "tags/0.6.1",
                 "shasum": null
             },
             "require": {
@@ -776,7 +803,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wp-pagenavi.2.73.zip",
-                "reference": null,
+                "reference": "tags/2.73",
                 "shasum": null
             },
             "require": {

@@ -20,11 +20,16 @@
         },
         {
             "type":"composer",
-            "url":"https://wpackagist.org"
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin"
         }
     ],
     "require": {
         "ext-gd": "*",
+        "atypisch/category-colors": "1.1",
         "johnpbloch/wordpress-core-installer": "^0.2.1",
         "johnpbloch/wordpress": "3.8.2",
         "wpackagist-plugin/adminimize" : "1.8.4",
