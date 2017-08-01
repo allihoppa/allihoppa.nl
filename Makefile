@@ -2,10 +2,16 @@
 .RECIPEPREFIX +=
 
 .DEFAULT_GOAL := all
+.PHONY: all docker-base-images production_release
 
 SHELL=/bin/bash
 
-all: production_release
+all: docker-base-images production_release
+
+docker-base-images:
+    docker-compose build wordpress
+    docker-compose build php-build
+    docker-compose build js-build
 
 production_release:
     #todo make sure only minified js is used
