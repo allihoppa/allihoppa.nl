@@ -1,5 +1,10 @@
 version: "2"
 
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway
+
 services:
   php-build:
     image: allihoppa/allihoppa.nl:php-build
@@ -44,13 +49,20 @@ services:
     build:
       context: ./docker/base
     tty: true
-    ports:
-      - 80:80
     volumes:
       - ./public:/var/www
     env_file:
       - environment/dev/db.env
       - environment/dev/wordpress.env
+    networks:
+      default:
+      traefik:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=allihoppa"
+      - "traefik.frontend.rule=Host:allihoppa.nl.localhost"
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik_webgateway"
 
   mysql:
     volumes:
