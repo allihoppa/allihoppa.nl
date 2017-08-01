@@ -2,11 +2,16 @@
 .RECIPEPREFIX +=
 
 .DEFAULT_GOAL := all
-.PHONY: all docker-base-images production_release
+.PHONY: all docker-base-images production_release quickstart start
 
 SHELL=/bin/bash
 
 all: docker-base-images production_release
+
+quickstart:
+    docker-compose up
+
+start: docker-base-images quickstart
 
 docker-base-images:
     docker-compose build wordpress
