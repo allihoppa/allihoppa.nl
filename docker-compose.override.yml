@@ -52,6 +52,7 @@ services:
       - "traefik.docker.network=traefik_webgateway"
 
   mysql:
+    user: $HOST_UID:$HOST_GID
     volumes:
       - ./environment/dev/db/init:/docker-entrypoint-initdb.d
       - ./environment/dev/db/data:/var/lib/mysql
