@@ -67,12 +67,12 @@ $(function(){
 
 <?php
 if (have_posts()) {
-	while (have_posts()) { 
-	the_post(); 
-	$category = get_the_category(); 
+	while (have_posts()) {
+	the_post();
+	$category = get_the_category();
 	$the_category_id = $category[0]->cat_ID;
-		if(function_exists('cc_get_color')) { 
-			$category_color = cc_get_color($the_category_id); 
+		if(function_exists('cc_get_color')) {
+			$category_color = cc_get_color($the_category_id);
 		}
 	}
 }
@@ -80,7 +80,6 @@ if (have_posts()) {
 if(empty($category_color) || $category_color == "default" || is_front_page()) {
 	$category_color = "15adaa";
 }
-//var_dump($category_color);
 ?>
 
 <style type="text/css" media="screen">
@@ -98,20 +97,20 @@ a:link, a:visited, #header .catmenu, .item_type, h1, h2, h3, h4, h5, h6, .footer
 
 <div id="horizon">
 <div id="header">
-	
+
 	<?php include('menu.php'); ?>
-	
+
 	<div class="container width_max">
 		<div id="header_logo">
 			<div id="backtohome" class="width_max_inside"><a href="<?php bloginfo('url'); ?>">&nbsp;</a></div>
 		</div>
 	</div>
-	
+
 	<?php
 	include('catmenu.php');
 	?>
 </div>
-	
+
 <div id="container_wrap" class="width_max">
 <div class="container width_max">
 <div class="container_abs width_max">
