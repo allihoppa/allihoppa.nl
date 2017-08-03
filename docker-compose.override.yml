@@ -6,25 +6,6 @@ networks:
       name: traefik_webgateway
 
 services:
-  php-build:
-    image: allihoppa/allihoppa.nl:php-build
-    container_name: allihoppa-nl-php-build
-    build:
-      context: ./docker/build
-    volumes:
-      - ./:/var/www
-      - ~/.composer/:/home/.composer
-    user: $HOST_UID:$HOST_GID
-    environment:
-      HOME: /home
-      SYMFONY_ENV: "dev"
-      # Add the GITHUB_TOKEN which is needed to setup Composer authentication configuration.
-      # This value is taken from a variable, or as the docs say:
-      # "Environment variables with only a key are resolved to their values on the machine Compose is running on,
-      # which can be helpful for secret or host-specific values."
-      # See: # https://docs.docker.com/compose/compose-file/#/environment
-      GITHUB_TOKEN: $GITHUB_TOKEN
-
   js-build:
     container_name: allihoppa-nl-js-build
     image: allihoppa/allihoppa.nl:js-build
@@ -44,16 +25,22 @@ services:
       - ./:/workspace/
     command: sh -c "npm install --no-optional && gulp"
 
-  wordpress:
-    image: allihoppa/allihoppa.nl:base
+  app:
+    image: allihoppa/allihoppa.nl:dev
+    container_name: allihoppa-nl-app-dev
     build:
-      context: ./docker/base
-    tty: true
+      context: ./docker/dev
+    user: $HOST_UID:$HOST_GID
     volumes:
-      - ./public:/var/www
+      - ./:/var/www
+      - ~/.composer/:/home/.composer
     env_file:
       - environment/dev/db.env
       - environment/dev/wordpress.env
+    environment:
+      HOME: /home
+      PHP_IDE_CONFIG: "serverName=allihoppa.nl.localhost"
+      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
     networks:
       default:
       traefik:
@@ -61,7 +48,7 @@ services:
       - "traefik.enable=true"
       - "traefik.backend=allihoppa"
       - "traefik.frontend.rule=Host:allihoppa.nl.localhost"
-      - "traefik.port=80"
+      - "traefik.port=8000"
       - "traefik.docker.network=traefik_webgateway"
 
   mysql:

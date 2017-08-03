@@ -1,9 +1,15 @@
 version: "2"
 
 services:
-  wordpress:
+  app-base:
+      image: allihoppa/allihoppa.nl:base
+      build:
+        context: ./docker/base
+      command: "true" # do nothing
+
+  app:
     image: allihoppa/allihoppa.nl
-    container_name: allihoppa-nl-wordpress
+    container_name: allihoppa-nl-app
     links:
       - mysql
     environment:

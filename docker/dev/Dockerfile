@@ -8,7 +8,13 @@ RUN apt-get update \
     && php -r "unlink('composer-setup.php');" \
     && chmod +x composer.phar \
     && mv composer.phar /usr/local/bin/composer \
+
+# Install PHP Xdebug extension
+    && apt-get install php5-xdebug \
+    && php -m | grep xdebug \
+
+# Clear package cache
     && rm -rf /var/lib/apt/lists/*
 
-# To prevent this image running continuously when started via docker-compose, override it's command
-CMD echo "No command to run, exiting"; exit 0
+# Add xdebug config
+COPY xdebug.ini /etc/php5/conf.d/xdebug-extra.ini

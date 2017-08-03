@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker-compose run php-build composer "$@"
+docker-compose run app composer "$@"

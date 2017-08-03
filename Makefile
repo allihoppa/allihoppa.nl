@@ -11,8 +11,8 @@ quickstart:
 start: docker-base-images quickstart
 
 docker-base-images:
-	docker-compose build wordpress
-	docker-compose build php-build
+	docker-compose build app-base
+	docker-compose build app
 	docker-compose build js-build
 
 production_release:
