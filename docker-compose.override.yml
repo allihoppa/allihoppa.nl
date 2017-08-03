@@ -55,6 +55,7 @@ services:
       - "traefik.docker.network=traefik_webgateway"
 
   mysql:
+    container_name: allihoppa-nl-db-dev
     user: $HOST_UID:$HOST_GID
     volumes:
       - ./environment/dev/db/init:/docker-entrypoint-initdb.d
