@@ -9,6 +9,7 @@
 !/environment/dev/db/init
 /environment/dev/db/init/*
 !/environment/dev/db/init/.gitkeep
+!/environment/dev/db/init/init.sh
 /node_modules
 /public/wordpress
 /public/wp-content/languages

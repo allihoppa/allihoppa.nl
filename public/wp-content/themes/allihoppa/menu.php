@@ -2,41 +2,40 @@
 global $post;
 $current_post_id = $post->ID;
 $page_slug = $post->post_name;
-
-//var_dump($page_slug);
+	
+//var_dump($page_slug);	
 $menu_name = 'mainmenu';
 
 if ( ($menu = wp_get_nav_menu_object( $menu_name ) ) && ( isset($menu) ) ) {
 	$menu_items = wp_get_nav_menu_items($menu->term_id);
 	$normal_menu = '<ul id="menu-' . $menu_name . '">';
 
-	$x = 0;
 	foreach ( (array) $menu_items as $key => $menu_item ) {
 		$x++;
-
+		
 		$item_id = $menu_item->object_id;
-
+		
 		if(function_exists('the_slug')) {
 			$item_slug = the_slug($item_id);
 			//var_dump($item_slug);
 		}
-
+		
 		$title = $menu_item->title;
 		$url = $menu_item->url;
-
-
+		
+		
 		//var_dump($menu_item);
-
-		if($x > "1") {
+		
+		if($x > "1") { 
 		$normal_menu .= '<li class="menu-item walker">/</li>';
 		}
-		if($item_slug == $page_slug ) { $selected = " current_page_item"; } else { $selected = ""; }
+		if($item_slug == $page_slug ) { $selected = " current_page_item"; } else { $selected = ""; } 
 		$normal_menu .= '<li class="page_item' . $selected . '"><a href="' . $url . '">' . $title . '</a></li>';
-
+		
 	}
 
 	$normal_menu .= '</ul>';
-
+	
 
 }
 
@@ -56,21 +55,21 @@ $args = array(
 		'offset' => 0,
 		'post_type' => 'page',
 		'post_status' => 'publish'
-	);
+	); 
 
-$pages = get_pages($args);
+$pages = get_pages($args); 
 
 foreach ( $pages as $page ) {
-
+	
 	//add x
 	$x++;
-
+	
 	//set variables
 	$page_id = $page->ID;
 	$page_title = $page->post_title;
 	$page_link = $page->guid;
-
-	//create mobile menu
+	
+	//create mobile menu	
 	$extra_walker = "";
 	if($page->post_parent) { $extra_walker = "- "; }
 	$mobile_menu .= '<option value="' . get_page_link( $page_id ) . '">';
@@ -80,19 +79,19 @@ foreach ( $pages as $page ) {
 
 ?>
 
-<div class="menu nomobile">
+<div class="menu nomobile">	
 	<ul>
 	<?php
-	echo $normal_menu;
+	echo $normal_menu; 
 	?>
 	</ul>
 </div>
 
 <div class="mobile_menu mobile_only">
 	<div class="container width_max">
-   <select name="page-dropdown"	class="page-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'>
+   <select name="page-dropdown"	class="page-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'> 
 	 <option value="">
-	<?php echo esc_attr( __( 'Selecteer een pagina' ) ); ?></option>
+	<?php echo esc_attr( __( 'Selecteer een pagina' ) ); ?></option> 
 	 <?php echo $mobile_menu; ?>
 	</select>
 	</div>
