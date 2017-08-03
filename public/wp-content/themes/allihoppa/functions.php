@@ -32,11 +32,11 @@ function load_scripts() {
 	$template_url = get_bloginfo('template_url');
 
 	$functions_location = $template_url . "/js/functions.js";
-	$jquery_location = $template_url . "/js/jquery.js";
+	$jquery_location = $template_url . "/js/jquery.min.js";
 	$jquery_jcarousel3_location = $template_url . "/js/jquery.jcarousel.min.js";
 	$jquery_jcarousel3basic_location = $template_url . "/js/jcarousel.basic.js";
 	$jquery_vgrid_location = $template_url . "/js/jquery.vgrid.min.js";
-	$jquery_easing_location = $template_url . "/js/jquery.easing.js";
+	$jquery_easing_location = $template_url . "/js/jquery.easing.min.js";
 
 	wp_dequeue_script('jquery');
 	wp_dequeue_script('jqueryui');
