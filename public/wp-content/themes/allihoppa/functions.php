@@ -7,6 +7,8 @@ if ( function_exists('register_sidebar') ) {
 	register_sidebar(array('name' => 'Footer 3','before_widget' => '<div class="footer_content">', 'after_widget' => '</div>', 'before_title' => '<h3>', 'after_title' => '</h3>') );
 }
 
+const INTERNAL_WP_HOME = 'http://localhost:8000';
+
 function word_limiter($str, $n = 20, $end_char = '&#8230;') {
 	if (strlen($str) < $n) {
 		return $str;
@@ -141,4 +143,16 @@ add_filter('request', 'fixCategoryPagination');
 add_action( 'wp', 'lc_grab_ids_from_gallery' );
 add_theme_support( 'post-formats', array( 'image', 'gallery', 'video' ) );
 add_theme_support( 'post-thumbnails' );
+// Make sure cron jobs such as those initiated by akismet plugin
+// use the internal hostname and port
+add_filter('site_url', 'filter_site_url_use_internal_url_for_cron_jobs');
+function filter_site_url_use_internal_url_for_cron_jobs($url)
+{
+    if (strstr($url, 'wp-cron.php')) {
+        return str_replace(getenv('WP_HOME'), INTERNAL_WP_HOME, $url);
+    }
+
+    return $url;
+}
+
 ?>

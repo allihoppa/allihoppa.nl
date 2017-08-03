@@ -44,9 +44,6 @@ services:
     networks:
       default:
       traefik:
-    extra_hosts:
-      # akismet plugin tries to resolve the external domain from within the container (probably based on site url)
-      - "allihoppa.nl.localhost:127.0.0.1"
     labels:
       - "traefik.enable=true"
       - "traefik.backend=allihoppa"
