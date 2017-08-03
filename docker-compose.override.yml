@@ -53,6 +53,7 @@ services:
 
   mysql:
     volumes:
-      - ./docker/mysql:/docker-entrypoint-initdb.d
+      - ./environment/dev/db/init:/docker-entrypoint-initdb.d
+      - ./environment/dev/db/data:/var/lib/mysql
     env_file:
       - environment/dev/db.env
