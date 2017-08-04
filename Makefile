@@ -1,9 +1,11 @@
 .DEFAULT_GOAL := all
-.PHONY: all docker-base-images production_release quickstart start
+.PHONY: all docker-base-images docker-dist-image quickstart start
 
 SHELL=/bin/bash
 
-all: docker-base-images production_release
+DIST_BUILD_DIR=docker/service/app/dist/build
+
+all: docker-base-images docker-dist-images
 
 quickstart:
 	docker-compose up
@@ -15,9 +17,7 @@ docker-base-images:
 	docker-compose build app
 	docker-compose build js-build
 
-production_release:
-	#todo make sure only minified js is used
-	#todo install jquery etc. with dependency manager
+docker-dist-image:
 	rsync \
 		-a \
 		-q \
@@ -39,6 +39,9 @@ production_release:
 		--exclude wordpress/wp-content \
 		--delete \
 		public/ \
-		release
+		${DIST_BUILD_DIR}
 
-	cat environment/prod/wordpress.apacheenv >> release/.htaccess
+# TODO:
+#	cat environment/prod/wordpress.apacheenv >> release/.htaccess
+
+	docker-compose -f environment/ci/docker-compose.yml build app

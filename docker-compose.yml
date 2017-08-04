@@ -10,8 +10,6 @@ services:
   app:
     image: allihoppa/allihoppa.nl
     container_name: allihoppa-nl-app
-    links:
-      - mysql
     environment:
       DB_HOST: mysql
 
