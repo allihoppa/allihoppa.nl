@@ -5,7 +5,7 @@ SHELL=/bin/bash
 
 DIST_BUILD_DIR=docker/service/app/dist/build
 
-all: docker-base-images docker-dist-images
+all: docker-base-images docker-dist-image
 
 quickstart:
 	docker-compose up
