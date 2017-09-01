@@ -4,7 +4,7 @@ services:
   app-base:
       image: allihoppa/allihoppa.nl:base
       build:
-        context: ./docker/base
+        context: ./docker/service/app/base
       command: "true" # do nothing
 
   app:
