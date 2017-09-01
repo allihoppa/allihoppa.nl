@@ -29,7 +29,7 @@ services:
     image: allihoppa/allihoppa.nl:dev
     container_name: allihoppa-nl-app-dev
     build:
-      context: ./docker/dev
+      context: ./docker/service/app/dev
     user: $HOST_UID:$HOST_GID
     volumes:
       - ./:/var/www
