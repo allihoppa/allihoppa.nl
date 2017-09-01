@@ -1,6 +1,6 @@
 FROM ubuntu:12.04
 
-MAINTAINER Lucas van Lierop <lucas@vanlierop.org>
+MAINTAINER Lucas van Lierop <me@lucasvanlierop.nl>
 
 RUN apt-get update && \
     apt-get install -y \
