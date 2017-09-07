@@ -1,0 +1,47 @@
+version: "2"
+
+services:
+  js-build:
+     container_name: allihoppa-nl-js-build
+     image: allihoppa/allihoppa.nl:js-build
+     build:
+       context: ../../docker/js-build
+     user: $HOST_UID:$HOST_GID
+     environment:
+       HOME: /home
+     volumes:
+       # Bower config
+       - ~/.config/configstore/bower:/home/.config/configstore/bower
+       - ~/.cache/bower:/home/.cache/bower
+       - ~/.local/bower:/home/.local/bower
+       # NPM config
+       - ~/.npm/:/home/.npm/
+       # Workspace
+       - ../../:/workspace/
+
+  app-base:
+    image: allihoppa/allihoppa.nl:base
+    build:
+      context: ../../docker/service/app/base
+
+  app-dev:
+    image: allihoppa/allihoppa.nl:dev
+    build:
+      context: ../../docker/service/app/dev
+    user: $HOST_UID:$HOST_GID
+    volumes:
+      - ../../:/var/www
+      - ~/.composer/:/home/.composer
+    env_file:
+      - ./db.env
+      - ./wordpress.env
+    environment:
+      HOME: /home
+
+  app:
+    image: allihoppa/allihoppa.nl
+    container_name: allihoppa-nl-app
+
+  mysql:
+    container_name: allihoppa-nl-mysql
+    image: mysql:5.5

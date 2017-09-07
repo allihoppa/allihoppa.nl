@@ -1,0 +1,47 @@
+version: "2"
+
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway
+
+services:
+  js-build:
+    extends:
+      file: ../default/docker-compose.yml
+      service: js-build
+    container_name: allihoppa-nl-js-build-dev
+    command: sh -c "npm install --no-optional && gulp"
+
+  app:
+    extends:
+      file: ../default/docker-compose.yml
+      service: app-dev
+    container_name: allihoppa-nl-app-dev
+    env_file:
+      - ./db.env
+      - ./wordpress.env
+    environment:
+      PHP_IDE_CONFIG: "serverName=allihoppa.nl.localhost"
+      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+    networks:
+      default:
+      traefik:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=allihoppa"
+      - "traefik.frontend.rule=Host:allihoppa.nl.localhost"
+      - "traefik.port=8000"
+      - "traefik.docker.network=traefik_webgateway"
+
+  mysql:
+    extends:
+      file: ../default/docker-compose.yml
+      service: mysql
+    container_name: allihoppa-nl-db-dev
+    user: $HOST_UID:$HOST_GID
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+      - ./db/data:/var/lib/mysql
+    env_file:
+      - ./db.env

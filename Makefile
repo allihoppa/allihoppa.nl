@@ -8,14 +8,15 @@ DIST_BUILD_DIR=docker/service/app/dist/build
 all: docker-base-images docker-dist-image
 
 quickstart:
-	docker-compose up
+	docker-compose -f environment/dev/docker-compose.yml up
 
 start: docker-base-images quickstart
 
 docker-base-images:
-	docker-compose build app-base
-	docker-compose build app
-	docker-compose build js-build
+	docker-compose -f environment/default/docker-compose.yml build app-base
+	docker-compose -f environment/default/docker-compose.yml build app-dev
+	docker-compose -f environment/default/docker-compose.yml build js-build
+
 
 docker-dist-image:
 	rsync \
