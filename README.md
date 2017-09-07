@@ -1,5 +1,7 @@
 Allihoppa website
 
+[![Build Status](https://travis-ci.org/allihoppa/allihoppa.nl.svg?branch=initial)](https://travis-ci.org/allihoppa/allihoppa.nl)
+
 # Development
 - Store a production database dump to `environment/dev/db/init/init.sql.tpl`
 - run `make start`
