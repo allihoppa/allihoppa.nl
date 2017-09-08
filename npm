@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker-compose run --rm js-build npm "$@"
+docker-compose -f environment/dev/docker-compose.yml run --rm js-build npm "$@"
