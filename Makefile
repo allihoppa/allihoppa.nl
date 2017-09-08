@@ -22,6 +22,13 @@ docker-dist-image: docker-base-images
 	rm -rf ${TMP_DIST_BUILD_DIR}
 	git clone -q --depth=1 file://$(shell pwd) ${TMP_DIST_BUILD_DIR}
 
+	# Create composer and NPM cache dirs
+	mkdir -p \
+		~/.composer \
+		~/.cache \
+		~/.config/configstore \
+		~/.local
+
 	docker-compose \
 		-f environment/default/docker-compose.yml \
 		run --rm \
