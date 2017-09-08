@@ -4,6 +4,7 @@
 SHELL=/bin/bash
 
 DIST_BUILD_DIR=docker/service/app/dist/build
+TMP_DIST_BUILD_DIR=$(DIST_BUILD_DIR)-tmp
 
 all: docker-base-images docker-dist-image
 
@@ -17,8 +18,29 @@ docker-base-images:
 	docker-compose -f environment/default/docker-compose.yml build app-dev
 	docker-compose -f environment/default/docker-compose.yml build js-build
 
+docker-dist-image: docker-base-images
+	rm -rf ${TMP_DIST_BUILD_DIR}
+	git clone -q --depth=1 file://$(shell pwd) ${TMP_DIST_BUILD_DIR}
 
-docker-dist-image:
+	docker-compose \
+		-f environment/default/docker-compose.yml \
+		run --rm \
+		--workdir=/var/www/$(TMP_DIST_BUILD_DIR) \
+		app-dev \
+			composer install \
+			--prefer-dist \
+			--ansi \
+			--no-dev \
+			--no-suggest \
+			--optimize-autoloader \
+
+	docker-compose \
+		-f environment/default/docker-compose.yml \
+		run --rm \
+		--workdir=/workspace/$(TMP_DIST_BUILD_DIR) \
+		js-build \
+			sh -c "npm install --no-optional && gulp"
+
 	rsync \
 		-a \
 		-q \
@@ -39,7 +61,7 @@ docker-dist-image:
 		--exclude wp-content/uploads \
 		--exclude wordpress/wp-content \
 		--delete \
-		public/ \
+		${TMP_DIST_BUILD_DIR}/public \
 		${DIST_BUILD_DIR}
 
 # TODO:

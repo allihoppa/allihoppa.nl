@@ -1,6 +1,6 @@
 /bower_components
 /downloaded
-/docker/service/app/dist/build
+/docker/service/app/dist/build*
 !/environment/prod
 /environment/prod/*
 !/environment/prod/.gitkeep
