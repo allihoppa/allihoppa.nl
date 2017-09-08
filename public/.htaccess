@@ -1,10 +1,12 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?allihoppa.nl [NC]
+RewriteRule \.(jpg|jpeg|png|gif)$ - [F,L]
 
 # Stop annoying Iemo from hotlinking
 RewriteCond %{HTTP_USER_AGENT} "iemo" [NC]
-RewriteRule ^.*$ - [F,L]
+RewriteRule ^.*$ -
 
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
