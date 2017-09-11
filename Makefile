@@ -22,12 +22,13 @@ docker-dist-image: docker-base-images
 	rm -rf ${TMP_DIST_BUILD_DIR}
 	git clone -q --depth=1 file://$(shell pwd) ${TMP_DIST_BUILD_DIR}
 
-	# Create composer and NPM cache dirs
+	# Create composer, bower and npm cache dirs
 	mkdir -p \
 		~/.composer \
-		~/.cache \
-		~/.config/configstore \
-		~/.local
+		~/.cache/bower \
+		~/.config/configstore/bower \
+		~/.local/bower \
+		~/.npm
 
 	docker-compose \
 		-f environment/default/docker-compose.yml \
@@ -46,7 +47,7 @@ docker-dist-image: docker-base-images
 		run --rm \
 		--workdir=/workspace/$(TMP_DIST_BUILD_DIR) \
 		js-build \
-			sh -c "ls -lash /home && ls -lash /home/.config && npm install --no-optional && gulp"
+			sh -c "npm install --no-optional && gulp"
 
 	rsync \
 		-a \
