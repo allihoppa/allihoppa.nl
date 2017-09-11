@@ -46,7 +46,7 @@ docker-dist-image: docker-base-images
 		run --rm \
 		--workdir=/workspace/$(TMP_DIST_BUILD_DIR) \
 		js-build \
-			sh -c "npm install --no-optional && gulp"
+			sh -c "ls -lash /home && ls -lash /home/.config && npm install --no-optional && gulp"
 
 	rsync \
 		-a \
