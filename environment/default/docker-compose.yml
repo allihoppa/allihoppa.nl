@@ -2,22 +2,20 @@ version: "2"
 
 services:
   js-build:
-     container_name: allihoppa-nl-js-build
-     image: allihoppa/allihoppa.nl:js-build
-     build:
-       context: ../../docker/js-build
-     user: $HOST_UID:$HOST_GID
-     environment:
-       HOME: /home
-     volumes:
-       # Bower config
-       - ~/.config/configstore:/home/.config/configstore
-       - ~/.cache/bower:/home/.cache/bower
-       - ~/.local/bower:/home/.local/bower
-       # NPM config
-       - ~/.npm/:/home/.npm/
-       # Workspace
-       - ../../:/workspace/
+    container_name: allihoppa-nl-js-build
+    image: allihoppa/allihoppa.nl:js-build
+    build:
+      context: ../../docker/js-build
+    environment:
+      HOME: /tmp
+    user: $HOST_UID:$HOST_GID
+    volumes:
+      # Bower cache
+      - ~/.cache/bower:/tmp/.cache/bower
+      # NPM config
+      - ~/.npm/:/tmp/.npm/
+      # Workspace
+      - ../../:/workspace/
 
   app-base:
     image: allihoppa/allihoppa.nl:base
