@@ -2,8 +2,13 @@
 
 SHELL=/bin/bash
 
+PROJECT_DIR=$(shell pwd)
+ENV_DIR=${PROJECT_DIR}/env/${ENV}
+DEPLOY_DIR=${PROJECT_DIR}/deploy
+
 DIST_BUILD_DIR=docker/service/app/dist/build
 TMP_DIST_BUILD_DIR=$(DIST_BUILD_DIR)-tmp
+export DOCKER_DEPLOY_TAG=$(shell ${DEPLOY_DIR}/bin/generate-deploy-tag)
 
 .PHONY: all
 all: docker-base-images docker-dist-image
@@ -80,3 +85,9 @@ docker-dist-image: docker-base-images
 #	cat environment/prod/wordpress.apacheenv >> release/.htaccess
 
 	docker-compose -f environment/ci/docker-compose.yml build app
+	docker tag lucasvanlierop/allihoppa.nl:${DOCKER_DEPLOY_TAG} lucasvanlierop/allihoppa.nl:latest
+
+.PHONY: docker-images-persistent
+docker-images-persistent:
+	docker push lucasvanlierop/allihoppa.nl:latest
+	docker push lucasvanlierop/allihoppa.nl:${DOCKER_DEPLOY_TAG}

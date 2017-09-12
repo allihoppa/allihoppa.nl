@@ -6,5 +6,6 @@ services:
       file: ../default/docker-compose.yml
       service: app
     container_name: allihoppa-nl-app-ci
+    image: lucasvanlierop/allihoppa.nl:${DOCKER_DEPLOY_TAG}
     build:
       context: ../../docker/service/app/dist

@@ -37,7 +37,7 @@ services:
       HOME: /home
 
   app:
-    image: allihoppa/allihoppa.nl
+    image: lucasvanlierop/allihoppa.nl
     container_name: allihoppa-nl-app
 
   mysql:

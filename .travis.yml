@@ -7,10 +7,18 @@ services:
   - docker
 
 script:
+  - docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
   - make
 
 after_failure:
   - ./docker-compose -f env/ci/docker-compose.yml logs
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: make docker-images-persistent
+    on:
+      branch: master
 
 cache:
   directories:

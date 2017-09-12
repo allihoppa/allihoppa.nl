@@ -1,0 +1,2 @@
+#/usr/bin/env sh
+git show -s --format="%cI-%h" | sed -e 's/[:+]/-/g'
