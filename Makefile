@@ -1,23 +1,27 @@
 .DEFAULT_GOAL := all
-.PHONY: all docker-base-images docker-dist-image quickstart start
 
 SHELL=/bin/bash
 
 DIST_BUILD_DIR=docker/service/app/dist/build
 TMP_DIST_BUILD_DIR=$(DIST_BUILD_DIR)-tmp
 
+.PHONY: all
 all: docker-base-images docker-dist-image
 
+.PHONY: quickstart
 quickstart:
 	docker-compose -f environment/dev/docker-compose.yml up
 
+.PHONY: start
 start: docker-base-images quickstart
 
+.PHONY: docker-base-images
 docker-base-images:
 	docker-compose -f environment/default/docker-compose.yml build app-base
 	docker-compose -f environment/default/docker-compose.yml build app-dev
 	docker-compose -f environment/default/docker-compose.yml build js-build
 
+.PHONY: docker-dist-image
 docker-dist-image: docker-base-images
 	rm -rf ${TMP_DIST_BUILD_DIR}
 	git clone -q --depth=1 file://$(shell pwd) ${TMP_DIST_BUILD_DIR}
