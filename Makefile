@@ -42,6 +42,10 @@ docker-dist-image: docker-base-images
 			--no-suggest \
 			--optimize-autoloader \
 
+	whoami
+	id -u
+	id -g
+
 	docker-compose \
 		-f environment/default/docker-compose.yml \
 		run --rm \
