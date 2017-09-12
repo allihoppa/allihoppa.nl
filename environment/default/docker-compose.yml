@@ -11,7 +11,7 @@ services:
        HOME: /home
      volumes:
        # Bower config
-       - ~/.config/configstore/bower:/home/.config/configstore/bower
+       - ~/.config/configstore:/home/.config/configstore
        - ~/.cache/bower:/home/.cache/bower
        - ~/.local/bower:/home/.local/bower
        # NPM config

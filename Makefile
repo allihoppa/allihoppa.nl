@@ -42,17 +42,12 @@ docker-dist-image: docker-base-images
 			--no-suggest \
 			--optimize-autoloader \
 
-	whoami
-	id -u
-	id -g
-
 	docker-compose \
 		-f environment/default/docker-compose.yml \
 		run --rm \
 		--workdir=/workspace/$(TMP_DIST_BUILD_DIR) \
 		js-build \
-			sh -c "ls -lash /home/.config && ls -lash /home/.config/configstore && touch /home/.config/configstore/test"
-#			sh -c "npm install --no-optional && gulp"
+			sh -c "npm install --no-optional && gulp"
 
 	rsync \
 		-a \
