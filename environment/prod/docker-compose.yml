@@ -1,0 +1,33 @@
+version: '3'
+
+networks:
+  traefik:
+    external:
+      name: lucasvanlierop-website_default
+
+services:
+  app:
+    image: lucasvanlierop/allihoppa.nl
+    user: "33:33"
+    env_file:
+      - ./db.env
+      - ./wordpress.env
+    networks:
+      default:
+      traefik:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=allihoppa"
+      - "traefik.frontend.rule=Host:www.allihoppa.nl"
+      - "traefik.port=8000"
+      - "traefik.docker.network=lucasvanlierop-website_default"
+    volumes:
+      - /var/projects/allihoppa/uploads:/var/www/public/wp-content/uploads
+
+  mysql:
+    image: mysql:5.5
+    volumes:
+      - /var/projects/allihoppa/mysql/init/:/docker-entrypoint-initdb.d
+      - /var/projects/allihoppa/mysql/data/:/var/lib/mysql
+    env_file:
+      - ./db.env
