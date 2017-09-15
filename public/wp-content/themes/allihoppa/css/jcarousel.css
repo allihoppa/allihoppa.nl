@@ -1,9 +1,9 @@
 .jcarousel {
     position: relative;
     overflow: hidden;
-	height: 550px;
-	padding: 0;
-	margin: 0;
+    height: 550px;
+    padding: 0;
+    margin: 0;
 }
 
 /*
@@ -13,24 +13,23 @@ that the width is big enough to contain all items.
 */
 .jcarousel ul {
     position: relative;
-	height: 550px;
+    height: 550px;
     width: 20000em;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-
 /** Carousel Pagination **/
 .jcarousel-pagination {
-	position: absolute;
-	top: 510px;
-	left: 48%;
-	width: auto;
-	padding: 10px 0 10px 0;
-	text-align: center;
-	margin: 0;
-	z-index: 10;
+    position: absolute;
+    top: 510px;
+    left: 48%;
+    width: auto;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    margin: 0;
+    z-index: 10;
 }
 
 .jcarousel-pagination a {
@@ -39,7 +38,7 @@ that the width is big enough to contain all items.
     font-size: 0;
     line-height: 7px;
     min-width: 13px;
-	height: 13px;
+    height: 13px;
     background: url(../images/slider-pagination-inactive.png) no-repeat;
     border: 0;
     padding: 0;
@@ -56,27 +55,27 @@ These are the item elements. jCarousel works best, if the items
 have a fixed width and height (but it's not required).
 */
 .jcarousel li {
-	float: left;
-	height: 550px;
-	padding: 0;
-	margin: 0;
+    float: left;
+    height: 550px;
+    padding: 0;
+    margin: 0;
 }
 
 .image_slider {
-	position: relative;
-	top: 0;
-	left: 0;
-	height: 550px;	
-	padding: 0;
-	margin: 0;
-	z-index: 10;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 550px;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
 }
 
 .image_slider img {
-	float: left;
-	height: auto;
-	padding: 0;
-	margin: 0;
+    float: left;
+    height: auto;
+    padding: 0;
+    margin: 0;
 }
 
 .jcarousel[dir=rtl] li {

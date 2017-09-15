@@ -1,115 +1,128 @@
 <?php // Do not delete these lines
-	if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
-		die ('Please do not load this page directly. Thanks!');
+if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
+    die ('Please do not load this page directly. Thanks!');
 
-	if (!empty($post->post_password)) { // if there's a password
-		if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) {  // and it doesn't match the cookie
-			?>
+if (!empty($post->post_password)) { // if there's a password
+    if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) {  // and it doesn't match the cookie
+        ?>
 
-			<p class="nocomments">This is a secured message. Fill in the password to show.</p>
+        <p class="nocomments">This is a secured message. Fill in the password to show.</p>
 
-			<?php
-			return;
-		}
-	}
+        <?php
+        return;
+    }
+}
 
-	/* This variable is for alternating comment background */
-	$oddcomment = 'class="alt" ';
+/* This variable is for alternating comment background */
+$oddcomment = 'class="alt" ';
 ?>
 
 <!-- You can start editing here. -->
 
-
-
 <?php if ('open' == $post->comment_status) : ?>
-<div class="space">&nbsp;</div>
-<div class="space">&nbsp;</div>
-<div class="space">&nbsp;</div>
-<h3 id="respond">Reacties</h3>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
+    <h3 id="respond">Reacties</h3>
 
-<?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-<p>je moet zijn <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">ingelogd </a> om een reactie te kunnen plaatsen</p>
-<?php else : ?>
+    <?php if (get_option('comment_registration') && !$user_ID) : ?>
+        <p>je moet zijn <a
+                    href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">ingelogd </a>
+            om een reactie te kunnen plaatsen</p>
+    <?php else : ?>
 
-<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
+        <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 
-<?php if ( $user_ID ) : ?>
+            <?php if ($user_ID) : ?>
 
-<p>Ingelogd als <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. 
-<a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="Log out of this account">Log out &raquo;</a></p>
+                <p>Ingelogd als <a
+                            href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>.
+                    <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout"
+                       title="Log out of this account">Log out &raquo;</a></p>
 
-<?php else : ?>
+            <?php else : ?>
 
-    
-<p><input type="text" class="comment_text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" />
-<label for="author"><small>Naam<?php if ($req) echo " *"; ?></small></label></p>
+                <p><input type="text" class="comment_text" name="author" id="author"
+                          value="<?php echo $comment_author; ?>" size="22" tabindex="1"/>
+                    <label for="author">
+                        <small>Naam<?php if ($req) echo " *"; ?></small>
+                    </label></p>
 
-<p><input type="text"  class="comment_text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" />
-<label for="email"><small>Email (niet zichtbaar) <?php if ($req) echo " *"; ?></small></label></p>
+                <p><input type="text" class="comment_text" name="email" id="email"
+                          value="<?php echo $comment_author_email; ?>" size="22" tabindex="2"/>
+                    <label for="email">
+                        <small>Email (niet zichtbaar) <?php if ($req) echo " *"; ?></small>
+                    </label></p>
 
-<p><input type="text"  class="comment_text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" />
-<label for="url"><small>Website</small></label></p>
+                <p><input type="text" class="comment_text" name="url" id="url"
+                          value="<?php echo $comment_author_url; ?>" size="22" tabindex="3"/>
+                    <label for="url">
+                        <small>Website</small>
+                    </label></p>
 
-<?php endif; ?>
+            <?php endif; ?>
 
-<!--<p><small><strong>XHTML:</strong> You can use these tags: <code><?php echo allowed_tags(); ?></code></small></p>-->
+            <!--<p><small><strong>XHTML:</strong> You can use these tags: <code><?php echo allowed_tags(); ?></code></small></p>-->
 
-<p><textarea name="comment" id="comment" cols="40" rows="10" tabindex="4"></textarea><br /><br />
-<input name="submit" type="submit" id="submit_comment" class="submit_comment" tabindex="5" value="reactie plaatsen" />
-<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
-</p>
-<div class="space">&nbsp;</div>
-<?php do_action('comment_form', $post->ID); ?>
+            <p><textarea name="comment" id="comment" cols="40" rows="10" tabindex="4"></textarea><br/><br/>
+                <input name="submit" type="submit" id="submit_comment" class="submit_comment" tabindex="5"
+                       value="reactie plaatsen"/>
+                <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>"/>
+            </p>
+            <div class="space">&nbsp;</div>
+            <?php do_action('comment_form', $post->ID); ?>
 
-</form>
+        </form>
 
-<?php endif; // If registration required and not logged in 
-?>
+    <?php endif; // If registration required and not logged in
+    ?>
 
-<div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
 
-<?php if ($comments) : ?>
-	<h3 id="comments"><?php comments_number('Geen Reacties', '1 Reactie', '% Reacties' );?> op &#8220;<?php the_title(); ?>&#8221;</h3>
+    <?php if ($comments) : ?>
+        <h3 id="comments"><?php comments_number('Geen Reacties', '1 Reactie', '% Reacties'); ?> op
+            &#8220;<?php the_title(); ?>&#8221;</h3>
 
-	<ol class="commentlist">
+        <ol class="commentlist">
 
-	<?php foreach ($comments as $comment) : ?>
+            <?php foreach ($comments as $comment) : ?>
 
-		<li <?php echo $oddcomment; ?>id="comment-<?php comment_ID() ?>">
-			<cite><?php comment_author_link() ?></cite> says:
-			<?php if ($comment->comment_approved == '0') : ?>
-			<em>Je reactie is in afwachting van goedkeuring.</em>
-			<?php endif; ?>
-			<br />
+                <li <?php echo $oddcomment; ?>id="comment-<?php comment_ID() ?>">
+                    <cite><?php comment_author_link() ?></cite> says:
+                    <?php if ($comment->comment_approved == '0') : ?>
+                        <em>Je reactie is in afwachting van goedkeuring.</em>
+                    <?php endif; ?>
+                    <br/>
 
-			<small class="commentmetadata"><a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('l F j, Y') ?> om <?php comment_time() ?></a> <?php edit_comment_link('edit','&nbsp;&nbsp;',''); ?></small>
+                    <small class="commentmetadata"><a href="#comment-<?php comment_ID() ?>"
+                                                      title=""><?php comment_date('l F j, Y') ?>
+                            om <?php comment_time() ?></a> <?php edit_comment_link('edit', '&nbsp;&nbsp;', ''); ?>
+                    </small>
 
-			<?php comment_text() ?>
+                    <?php comment_text() ?>
 
-		</li>
+                </li>
 
-	<?php
-		/* Changes every other comment to a different class */
-		$oddcomment = ( empty( $oddcomment ) ) ? 'class="alt" ' : '';
-	?>
+                <?php
+                /* Changes every other comment to a different class */
+                $oddcomment = (empty($oddcomment)) ? 'class="alt" ' : '';
+                ?>
 
-	<?php endforeach; /* end for each comment */ ?>
+            <?php endforeach; /* end for each comment */ ?>
 
-	</ol>
+        </ol>
 
- <?php else : // this is displayed if there are no comments so far ?>
+    <?php else : // this is displayed if there are no comments so far ?>
 
-	<?php if ('open' == $post->comment_status) : ?>
-		<!-- If comments are open, but there are no comments. -->
+        <?php if ('open' == $post->comment_status) : ?>
+            <!-- If comments are open, but there are no comments. -->
 
-	 <?php else : // comments are closed ?>
-		<!-- If comments are closed. -->
-		<p class="nocomments">Reacties zijn gesloten.</p>
+        <?php else : // comments are closed ?>
+            <!-- If comments are closed. -->
+            <p class="nocomments">Reacties zijn gesloten.</p>
 
-	<?php endif; ?>
-<?php endif; ?>
-
-
+        <?php endif; ?>
+    <?php endif; ?>
 
 <?php endif; // if you delete this the sky will fall on your head
 ?>
