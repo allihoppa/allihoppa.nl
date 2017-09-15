@@ -92,7 +92,6 @@ function lc_grab_ids_from_gallery()
 {
     global $post;
 
-    $attachment_ids = array();
     $pattern = get_shortcode_regex();
     $ids = array();
 
@@ -102,8 +101,7 @@ function lc_grab_ids_from_gallery()
         for ($i = 0; $i < $count; $i++) {
             $atts = shortcode_parse_atts($matches[3][$i]);
             if (isset($atts['ids'])) {
-                $attachment_ids = explode(',', $atts['ids']);
-                $ids = array_merge($ids, $attachment_ids);
+                $ids = array_merge($ids, explode(',', $atts['ids']));
             }
         }
     }
