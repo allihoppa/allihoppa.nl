@@ -7,7 +7,7 @@ networks:
 
 services:
   app:
-    image: lucasvanlierop/allihoppa.nl
+    image: allihoppa/allihoppa.nl
     user: "33:33"
     env_file:
       - ./db.env

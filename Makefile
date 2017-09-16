@@ -81,13 +81,10 @@ docker-dist-image: docker-base-images
 		${TMP_DIST_BUILD_DIR}/public \
 		${DIST_BUILD_DIR}
 
-# TODO:
-#	cat environment/prod/wordpress.apacheenv >> release/.htaccess
-
 	docker-compose -f environment/ci/docker-compose.yml build app
-	docker tag lucasvanlierop/allihoppa.nl:${DOCKER_DEPLOY_TAG} lucasvanlierop/allihoppa.nl:latest
+	docker tag allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG} allihoppa/allihoppa.nl:latest
 
 .PHONY: docker-images-persistent
 docker-images-persistent:
-	docker push lucasvanlierop/allihoppa.nl:latest
-	docker push lucasvanlierop/allihoppa.nl:${DOCKER_DEPLOY_TAG}
+	docker push allihoppa/allihoppa.nl:latest
+	docker push allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
