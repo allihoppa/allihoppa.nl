@@ -1,10 +1,7 @@
 <?php
-global $post;
 $current_category_title = single_cat_title('', false);
 
 $cat_id = get_cat_ID($current_category_title);
-
-$current_post_id = $post->ID;
 
 $args = array(
     'type' => 'post',

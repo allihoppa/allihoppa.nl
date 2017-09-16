@@ -1,7 +1,16 @@
 <?php
 global $post;
-$current_post_id = $post->ID;
-$page_slug = $post->post_name;
+
+function generatePageSlugFromPost(WP_Post $post = null)
+{
+    if ($post === null) {
+        return '';
+    }
+
+    return $post->post_name;
+}
+
+$page_slug = generatePageSlugFromPost($post);
 
 $menu_name = 'mainmenu';
 

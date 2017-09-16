@@ -92,6 +92,10 @@ function lc_grab_ids_from_gallery()
 {
     global $post;
 
+    if ($post instanceof WP_Post === false) {
+        return array();
+    }
+
     $pattern = get_shortcode_regex();
     $ids = array();
 

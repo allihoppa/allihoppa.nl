@@ -5,8 +5,8 @@
     <div id="grid-content">
 
         <?php
-        $option1 = $_POST['option1'];
-        $option2 = $_POST['option2'];
+        $option1 = !empty($_POST['option1']) ? $_POST['option1'] : '';
+        $option2 = !empty($_POST['option2']) ? $_POST['option2'] : '';
 
         $all_values = $option1 . $option2;
         $values_array = array($option1, $option2);
