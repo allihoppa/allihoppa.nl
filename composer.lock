@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "atypisch/category-colors",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin.git",
-                "reference": "52a8e8a53c497ef8909135e219e99409a473faac"
+                "reference": "f597566e6089a8fa86b12668d3db30d3ef858e5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucasvanlierop/atypisch-wp-category-colors-plugin/zipball/52a8e8a53c497ef8909135e219e99409a473faac",
-                "reference": "52a8e8a53c497ef8909135e219e99409a473faac",
+                "url": "https://api.github.com/repos/lucasvanlierop/atypisch-wp-category-colors-plugin/zipball/f597566e6089a8fa86b12668d3db30d3ef858e5e",
+                "reference": "f597566e6089a8fa86b12668d3db30d3ef858e5e",
                 "shasum": ""
             },
             "type": "wordpress-plugin",
@@ -29,10 +29,10 @@
             ],
             "description": "Wordpress category-colors plugin",
             "support": {
-                "source": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin/tree/1.1.1",
+                "source": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin/tree/1.1.2",
                 "issues": "https://github.com/lucasvanlierop/atypisch-wp-category-colors-plugin/issues"
             },
-            "time": "2017-08-03T05:59:17+00:00"
+            "time": "2017-09-16T09:37:31+00:00"
         },
         {
             "name": "composer/installers",
