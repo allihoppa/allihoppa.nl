@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -ex
+
+DAY_OF_THE_WEEK_NAME=$(date '+%A')
+
+mysqldump \
+    -h ${MYSQL_DATABASE_HOST} \
+    -u root \
+    --password=${MYSQL_ROOT_PASSWORD} \
+    ${MYSQL_DATABASE} \
+    > ${BACKUP_DIR}/${MYSQL_DATABASE}_${DAY_OF_THE_WEEK_NAME}.sql

@@ -25,9 +25,21 @@ services:
       - /var/projects/allihoppa/uploads:/var/www/public/wp-content/uploads
 
   mysql:
-    image: mysql:5.5
+    image: allihoppa/mysql:5.5
     volumes:
       - /var/projects/allihoppa/mysql/init/:/docker-entrypoint-initdb.d
       - /var/projects/allihoppa/mysql/data/:/var/lib/mysql
     env_file:
       - ./db.env
+
+  mysqldump:
+     image: allihoppa/mysql:5.5
+     user: 33:33
+     volumes:
+      - /var/projects/allihoppa/mysql/backup/:/backup
+     env_file:
+       - ./db.env
+     environment:
+       MYSQL_DATABASE_HOST: mysql
+     command: 'backup'
+

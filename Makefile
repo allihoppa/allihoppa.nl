@@ -22,6 +22,7 @@ start: docker-base-images quickstart
 
 .PHONY: docker-base-images
 docker-base-images:
+	docker-compose -f environment/default/docker-compose.yml build mysql
 	docker-compose -f environment/default/docker-compose.yml build app-base
 	docker-compose -f environment/default/docker-compose.yml build app-dev
 	docker-compose -f environment/default/docker-compose.yml build js-build
@@ -86,6 +87,7 @@ docker-dist-image: docker-base-images
 
 .PHONY: docker-images-persistent
 docker-images-persistent:
+	docker push allihoppa/mysql:5.5
 	docker push allihoppa/allihoppa.nl:dev
 	docker push allihoppa/allihoppa.nl:latest
 	docker push allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
