@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 DAY_OF_THE_WEEK_NAME=$(date '+%A')
 
