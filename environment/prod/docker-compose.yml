@@ -33,13 +33,16 @@ services:
       - ./db.env
 
   mysqldump:
-     image: allihoppa/mysql:5.5
-     user: 33:33
-     volumes:
-      - /var/projects/allihoppa/mysql/backup/:/backup
-     env_file:
-       - ./db.env
-     environment:
-       MYSQL_DATABASE_HOST: mysql
-     command: 'backup'
-
+    image: allihoppa/mysql:5.5
+    user: 33:33
+    volumes:
+    - /var/projects/allihoppa/mysql/backup/:/backup
+    env_file:
+     - ./db.env
+    environment:
+     MYSQL_DATABASE_HOST: mysql
+    command: 'backup'
+    deploy:
+      restart_policy:
+        condition: any
+        delay: "1h"
