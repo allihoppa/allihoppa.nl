@@ -46,3 +46,17 @@ services:
       restart_policy:
         condition: any
         delay: "1h"
+
+  remote_backup:
+    image: that1guy/docker-rclone
+    user: 33:33
+    env_file:
+      - ./rclone.env
+    volumes:
+      - /var/projects/allihoppa/uploads:/data/uploads
+      - /var/projects/allihoppa/mysql/backup:/data/mysql
+    command: 'rclone copy /data DROPBOX:/Allihoppa.nl/website_backup'
+    deploy:
+      restart_policy:
+        condition: any
+        delay: "1h"
