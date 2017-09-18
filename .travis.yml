@@ -8,6 +8,7 @@ services:
 
 script:
   - docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
+  - echo "WP_SMTP_PASSWORD=test" > environment/default/wordpress.secret.env
   - make
 
 after_failure:
