@@ -3,7 +3,7 @@
 /docker/service/app/dist/build*
 !/environment/prod
 /environment/prod/*.env
-!/environment/prod/.gitkeep
+/environment/default/wordpress.secret.env
 !/environment/dev/db/data
 /environment/dev/db/data/*
 !/environment/dev/db/data/.gitkeep

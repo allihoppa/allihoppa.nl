@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "069cd72fd5bff44b9af9bcac26146176",
+    "content-hash": "9afbbb806a64143709bd34bb9b521f7a",
     "packages": [
         {
             "name": "atypisch/category-colors",
@@ -831,6 +831,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wp-pagenavi/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-smtp-config",
+            "version": "1.1.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-smtp-config/",
+                "reference": "tags/1.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-smtp-config.1.1.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-smtp-config/"
         }
     ],
     "packages-dev": [],

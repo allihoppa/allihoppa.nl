@@ -11,6 +11,8 @@ services:
     user: "33:33"
     env_file:
       - ./db.env
+      - ../default/wordpress.secret.env
+      - ../default/wordpress.env
       - ./wordpress.env
     networks:
       default:

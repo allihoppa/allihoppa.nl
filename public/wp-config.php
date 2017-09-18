@@ -15,13 +15,20 @@ define('LOGGED_IN_SALT', getenv('LOGGED_IN_SALT'));
 define('NONCE_SALT', getenv('NONCE_SALT'));
 $table_prefix  = 'wp_';
 define('WPLANG', 'nl_NL');
-define( 'WP_AUTO_UPDATE_CORE', false );
+define('WP_AUTO_UPDATE_CORE', false );
 define('WP_ENV', getenv('WP_ENV'));
 define('WP_DEBUG', getenv('WP_DEBUG'));
 define('WP_SITEURL', getenv('WP_SITEURL'));
 define('WP_HOME', getenv('WP_HOME'));
 define('WP_CONTENT_DIR',    __DIR__ . '/wp-content');
 define('WP_CONTENT_URL',    WP_HOME . '/wp-content');
+
+define('WP_SMTP_HOST', getenv('WP_SMTP_HOST'));
+define('WP_SMTP_PORT', (int) getenv('WP_SMTP_PORT'));
+define('WP_SMTP_ENCRYPTION', getenv('WP_SMTP_ENCRYPTION'));
+define('WP_SMTP_USER', getenv('WP_SMTP_USER'));
+define('WP_SMTP_PASSWORD', getenv('WP_SMTP_PASSWORD'));
+define('WP_SMTP_FROM', getenv('WP_SMTP_FROM'));
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )

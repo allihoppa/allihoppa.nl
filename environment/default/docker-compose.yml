@@ -33,6 +33,7 @@ services:
     env_file:
       - ./db.env
       - ./wordpress.env
+      - ./wordpress.secret.env
     environment:
       HOME: /home
 
