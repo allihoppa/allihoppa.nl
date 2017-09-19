@@ -7,7 +7,7 @@ networks:
 
 services:
   app:
-    image: allihoppa/allihoppa.nl
+    image: allihoppa/allihoppa.nl:${DEPLOY_TAG}
     user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     env_file:
       - ./db.env

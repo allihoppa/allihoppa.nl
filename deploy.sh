@@ -6,6 +6,7 @@ SWARM_HOST=lucasvanlierop-website
 DOCKER_COMPOSE_FILE_PROD=environment/prod/docker-compose.yml
 export ALLIHOPPA_UID=1001
 export ALLIHOPPA_GID=1001
+export DEPLOY_TAG=$(./deploy/bin/generate-deploy-tag)
 
 deploy_stack() {
     local stack_name=$1
