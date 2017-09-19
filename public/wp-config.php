@@ -17,7 +17,7 @@ $table_prefix  = 'wp_';
 define('WPLANG', 'nl_NL');
 define('WP_AUTO_UPDATE_CORE', false );
 define('WP_ENV', getenv('WP_ENV'));
-define('WP_DEBUG', getenv('WP_DEBUG'));
+define('WP_DEBUG', getenv('WP_DEBUG') === 'true');
 define('WP_SITEURL', getenv('WP_SITEURL'));
 define('WP_HOME', getenv('WP_HOME'));
 define('WP_CONTENT_DIR',    __DIR__ . '/wp-content');
