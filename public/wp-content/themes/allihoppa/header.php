@@ -78,6 +78,9 @@
             while (have_posts()) {
                 the_post();
                 $category = get_the_category();
+                if (count($category) === 0) {
+                    continue;
+                }
                 $the_category_id = $category[0]->cat_ID;
                 if (function_exists('cc_get_color')) {
                     $category_color = cc_get_color($the_category_id);
