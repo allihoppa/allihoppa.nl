@@ -4,6 +4,8 @@ set -e
 
 SWARM_HOST=lucasvanlierop-website
 DOCKER_COMPOSE_FILE_PROD=environment/prod/docker-compose.yml
+export ALLIHOPPA_UID=1001
+export ALLIHOPPA_GID=1001
 
 deploy_stack() {
     local stack_name=$1

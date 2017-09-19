@@ -8,7 +8,7 @@ networks:
 services:
   app:
     image: allihoppa/allihoppa.nl
-    user: "33:33"
+    user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     env_file:
       - ./db.env
       - ../default/wordpress.secret.env
@@ -24,21 +24,22 @@ services:
       - "traefik.port=8000"
       - "traefik.docker.network=lucasvanlierop-website_default"
     volumes:
-      - /var/projects/allihoppa/uploads:/var/www/public/wp-content/uploads
+      - /var/www/allihoppa/uploads:/var/www/public/wp-content/uploads
 
   mysql:
     image: allihoppa/mysql:5.5
+    user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     volumes:
-      - /var/projects/allihoppa/mysql/init/:/docker-entrypoint-initdb.d
-      - /var/projects/allihoppa/mysql/data/:/var/lib/mysql
+      - /var/www/allihoppa/mysql/init/:/docker-entrypoint-initdb.d
+      - /var/www/allihoppa/mysql/data/:/var/lib/mysql
     env_file:
       - ./db.env
 
   mysqldump:
     image: allihoppa/mysql:5.5
-    user: 33:33
+    user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     volumes:
-    - /var/projects/allihoppa/mysql/backup/:/backup
+    - /var/www/allihoppa/mysql/backup/:/backup
     env_file:
      - ./db.env
     environment:
@@ -51,12 +52,12 @@ services:
 
   remote_backup:
     image: that1guy/docker-rclone
-    user: 33:33
+    user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     env_file:
       - ./rclone.env
     volumes:
-      - /var/projects/allihoppa/uploads:/data/uploads
-      - /var/projects/allihoppa/mysql/backup:/data/mysql
+      - /var/www/allihoppa/uploads:/data/uploads
+      - /var/www/allihoppa/mysql/backup:/data/mysql
     command: 'rclone -vv copy /data DROPBOX:/Allihoppa.nl/website_backup'
     deploy:
       restart_policy:
