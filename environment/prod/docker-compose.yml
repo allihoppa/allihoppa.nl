@@ -1,5 +1,17 @@
 version: '3'
 
+volumes:
+  apache-lock:
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  apache-run:
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+
 networks:
   traefik:
     external:
@@ -24,6 +36,8 @@ services:
       - "traefik.port=8000"
       - "traefik.docker.network=lucasvanlierop-website_default"
     volumes:
+      - apache-lock:/var/lock
+      - apache-run:/var/run
       - /var/www/allihoppa/uploads:/var/www/public/wp-content/uploads
 
   mysql:
