@@ -39,6 +39,7 @@ services:
       - apache-lock:/var/lock
       - apache-run:/var/run
       - /var/www/allihoppa/uploads:/var/www/public/wp-content/uploads
+    hostname: www.allihoppa.nl
 
   mysql:
     image: allihoppa/mysql:5.5

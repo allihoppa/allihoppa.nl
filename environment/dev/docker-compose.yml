@@ -28,6 +28,8 @@ services:
     tmpfs:
       - /var/lock:uid=${HOST_UID}
       - /var/run:uid=${HOST_UID}
+    hostname: allihoppa.nl.localhost
+
     networks:
       default:
       traefik:
