@@ -1,10 +1,10 @@
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 
 MAINTAINER Lucas van Lierop <me@lucasvanlierop.nl>
 
 ENV APACHE_PID_FILE=/var/run/apache2.pid
-ENV APACHE_RUN_DIR=/var/run/apache2
-ENV APACHE_LOCK_DIR=/var/lock/apache2
+ENV APACHE_RUN_DIR=/var/run
+ENV APACHE_LOCK_DIR=/var/lock
 ENV HTTP_PORT=8000
 
 RUN apt-get update && \
@@ -16,16 +16,15 @@ RUN apt-get update && \
     php5-gd \
     php5-mysql
 
-COPY apache-default-vhost.conf /etc/apache2/sites-available/default
-
-# No SSL required
-RUN rm /etc/apache2/sites-available/default-ssl \
+# No default (SSL) vhosts required
+RUN rm /etc/apache2/sites-available/* \
 
 # No env vars required, these will be passed via Docker (Compose)
     && rm /etc/apache2/envvars \
 
 # Log to stdout/stderr instead file
-    && rm /etc/apache2/conf.d/other-vhosts-access-log \
+    && rm /etc/apache2/conf-available/other-vhosts-access-log.conf \
+    && rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf \
     && sed -i 's@${APACHE_LOG_DIR}/error.log@/dev/stderr@' /etc/apache2/apache2.conf \
 
 # Do not switch user/group
@@ -43,13 +42,14 @@ RUN rm /etc/apache2/sites-available/default-ssl \
 
 # Run on a higher port number (allows running as a non root user)
     && sed -i "s/80/${HTTP_PORT}/" /etc/apache2/ports.conf \
-    && sed -i "s/80/${HTTP_PORT}/" /etc/apache2/sites-available/default \
 
 # Disable dir listing
     && a2dismod autoindex \
 
 # Disable sending info about PHP in HTTP Response headers
     && sed -i 's/expose_php = On/expose_php = Off/' /etc/php5/apache2/php.ini
+
+COPY apache-default-vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN a2enmod rewrite
 
