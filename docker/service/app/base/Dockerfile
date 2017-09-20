@@ -15,7 +15,7 @@ RUN apt-get update && \
     php5-gd \
     php5-mysql
 
-COPY apache.conf /etc/apache2/sites-available/default
+COPY apache-default-vhost.conf /etc/apache2/sites-available/default
 
 # No SSL required
 RUN rm /etc/apache2/sites-available/default-ssl \
