@@ -49,6 +49,7 @@ services:
       - /var/www/allihoppa/mysql/data/:/var/lib/mysql
     env_file:
       - ./db.env
+    command: 'mysqld --verbose --log-error-verbosity=3'
 
   mysqldump:
     image: allihoppa/mysql:5.7
