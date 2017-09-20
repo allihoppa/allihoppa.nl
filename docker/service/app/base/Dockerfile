@@ -35,7 +35,10 @@ RUN rm /etc/apache2/sites-available/default-ssl \
     && rm -rf /var/lock /var/run \
 
 # Run on a higher port number (allows running as a non root user)
-    && sed -i "s/80/8000/" /etc/apache2/ports.conf
+    && sed -i "s/80/8000/" /etc/apache2/ports.conf \
+
+# Disable dir listing
+    && a2dismod autoindex
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
