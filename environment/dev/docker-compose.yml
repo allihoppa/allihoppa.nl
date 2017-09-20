@@ -24,6 +24,10 @@ services:
     environment:
       PHP_IDE_CONFIG: "serverName=allihoppa.nl.localhost"
       XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+    read_only: true
+    tmpfs:
+      - /var/lock:uid=${HOST_UID}
+      - /var/run:uid=${HOST_UID}
     networks:
       default:
       traefik:
