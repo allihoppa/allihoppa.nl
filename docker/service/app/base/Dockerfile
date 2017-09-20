@@ -31,6 +31,12 @@ RUN rm /etc/apache2/sites-available/default-ssl \
     && sed -i 's@User ${APACHE_RUN_USER}@@' /etc/apache2/apache2.conf \
     && sed -i 's@Group ${APACHE_RUN_GROUP}@@' /etc/apache2/apache2.conf \
 
+# Disable sending info about the server in signature on error pages
+    && echo 'ServerSignature Off' >> /etc/apache2/apache2.conf \
+
+# Disable sending info about the server in signature in HTTP response headers
+    && echo 'ServerTokens Prod' >> /etc/apache2/apache2.conf \
+
 # Allow mounting a tmpfs for lock and run files (so the container can run as read only)
     && rm -rf /var/lock /var/run \
 
@@ -38,7 +44,10 @@ RUN rm /etc/apache2/sites-available/default-ssl \
     && sed -i "s/80/8000/" /etc/apache2/ports.conf \
 
 # Disable dir listing
-    && a2dismod autoindex
+    && a2dismod autoindex \
+
+# Disable sending info about PHP in HTTP Response headers
+    && sed -i 's/expose_php = On/expose_php = Off/' /etc/php5/apache2/php.ini
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
