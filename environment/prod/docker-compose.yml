@@ -42,7 +42,7 @@ services:
     hostname: www.allihoppa.nl
 
   mysql:
-    image: allihoppa/mysql:5.5
+    image: allihoppa/mysql:5.6
     user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     volumes:
       - /var/www/allihoppa/mysql/init/:/docker-entrypoint-initdb.d
@@ -51,7 +51,7 @@ services:
       - ./db.env
 
   mysqldump:
-    image: allihoppa/mysql:5.5
+    image: allihoppa/mysql:5.6
     user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     volumes:
     - /var/www/allihoppa/mysql/backup/:/backup

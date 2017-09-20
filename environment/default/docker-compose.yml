@@ -43,7 +43,7 @@ services:
 
   mysql:
     container_name: allihoppa-nl-mysql
-    image: allihoppa/mysql:5.5
+    image: allihoppa/mysql:5.6
     build:
       ../../docker/service/mysql
 
