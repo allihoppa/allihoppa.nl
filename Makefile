@@ -87,7 +87,7 @@ docker-dist-image: docker-base-images
 
 .PHONY: docker-images-persistent
 docker-images-persistent:
-	docker push allihoppa/mysql:5.6
+	docker push allihoppa/mysql:5.7
 	docker push allihoppa/allihoppa.nl:dev
 	docker push allihoppa/allihoppa.nl:latest
 	docker push allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
