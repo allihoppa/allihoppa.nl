@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d4f6afa62b8ef97e793a3056c730c45",
+    "content-hash": "3401c86c9ec371f980f8bc119b3ffb37",
     "packages": [
         {
             "name": "atypisch/category-colors",
@@ -153,20 +153,58 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "3.8.2",
+            "version": "3.9.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "312412a03c743b033426b71ceae2712a04ba5c35"
+                "reference": "a601dc022009217a849667f2bc5e6f3ce8376de2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/312412a03c743b033426b71ceae2712a04ba5c35",
-                "reference": "312412a03c743b033426b71ceae2712a04ba5c35",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/a601dc022009217a849667f2bc5e6f3ce8376de2",
+                "reference": "a601dc022009217a849667f2bc5e6f3ce8376de2",
                 "shasum": ""
             },
             "require": {
+                "johnpbloch/wordpress-core": "3.9.19",
                 "johnpbloch/wordpress-core-installer": "~0.2",
+                "php": ">=5.3.2"
+            },
+            "type": "package",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "WordPress Community",
+                    "homepage": "http://wordpress.org/about/"
+                }
+            ],
+            "description": "WordPress is web software you can use to create a beautiful website or blog.",
+            "homepage": "http://wordpress.org/",
+            "keywords": [
+                "blog",
+                "cms",
+                "wordpress"
+            ],
+            "time": "2017-05-17T11:55:08+00:00"
+        },
+        {
+            "name": "johnpbloch/wordpress-core",
+            "version": "3.9.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/johnpbloch/wordpress-core.git",
+                "reference": "d8b63d82ee3e3ed03d417bd5233723bc201c033b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/d8b63d82ee3e3ed03d417bd5233723bc201c033b",
+                "reference": "d8b63d82ee3e3ed03d417bd5233723bc201c033b",
+                "shasum": ""
+            },
+            "require": {
                 "php": ">=5.3.2"
             },
             "type": "wordpress-core",
@@ -184,9 +222,10 @@
             "homepage": "http://wordpress.org/",
             "keywords": [
                 "blog",
-                "cms"
+                "cms",
+                "wordpress"
             ],
-            "time": "2014-04-08T18:15:51+00:00"
+            "time": "2017-05-16T22:49:45+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
