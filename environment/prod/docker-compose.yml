@@ -47,9 +47,13 @@ services:
     volumes:
       - /var/www/allihoppa/mysql/init/:/docker-entrypoint-initdb.d
       - /var/www/allihoppa/mysql/data/:/var/lib/mysql
+      - /var/www/allihoppa/mysql/backup/:/backup
+    environment:
+      MYSQL_DATABASE_HOST: localhost
     env_file:
       - ./db.env
     command: 'mysqld --log-error-verbosity=3'
+
 
   mysqldump:
     image: allihoppa/mysql:5.7
