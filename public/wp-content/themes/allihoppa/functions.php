@@ -1,10 +1,10 @@
 <?php
 //////// WIDGETS ///////
 if (function_exists('register_sidebar')) {
-    register_sidebar(array('name' => 'Sidebar', 'before_widget' => '<div class="sidebar_content">', 'after_widget' => '</div><div class="space">&nbsp;</div>', 'before_title' => '<h1>', 'after_title' => '</h1>'));
-    register_sidebar(array('name' => 'Footer 1', 'before_widget' => '<div class="footer_content">', 'after_widget' => '</div>', 'before_title' => '<h3>', 'after_title' => '</h3>'));
-    register_sidebar(array('name' => 'Footer 2', 'before_widget' => '<div class="footer_content">', 'after_widget' => '</div>', 'before_title' => '<h3>', 'after_title' => '</h3>'));
-    register_sidebar(array('name' => 'Footer 3', 'before_widget' => '<div class="footer_content">', 'after_widget' => '</div>', 'before_title' => '<h3>', 'after_title' => '</h3>'));
+    register_sidebar(array('id' => 'sidebar', 'name' => 'Sidebar', 'before_widget' => '<div class="sidebar_content">', 'after_widget' => '</div><div class="space">&nbsp;</div>', 'before_title' => '<h1>', 'after_title' => '</h1>'));
+    register_sidebar(array('id' => 'footer-1', 'name' => 'Footer 1', 'before_widget' => '<div class="footer_content">', 'after_widget' => '</div>', 'before_title' => '<h3>', 'after_title' => '</h3>'));
+    register_sidebar(array('id' => 'footer-2', 'name' => 'Footer 2', 'before_widget' => '<div class="footer_content">', 'after_widget' => '</div>', 'before_title' => '<h3>', 'after_title' => '</h3>'));
+    register_sidebar(array('id' => 'footer-3', 'name' => 'Footer 3', 'before_widget' => '<div class="footer_content">', 'after_widget' => '</div>', 'before_title' => '<h3>', 'after_title' => '</h3>'));
 }
 
 function word_limiter($str, $n = 20, $end_char = '&#8230;')
