@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c77c29a1df13e72a691e6690a20efff9",
+    "content-hash": "a0796ad533afd503454a6a3985260bb0",
     "packages": [
         {
             "name": "atypisch/category-colors",
@@ -648,16 +648,16 @@
         },
         {
             "name": "wpackagist-plugin/all-in-one-seo-pack",
-            "version": "2.1.4",
+            "version": "2.3.16",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/all-in-one-seo-pack/",
-                "reference": "tags/2.1.4"
+                "reference": "tags/2.3.16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/all-in-one-seo-pack.2.1.4.zip",
-                "reference": "tags/2.1.4",
+                "url": "https://downloads.wordpress.org/plugin/all-in-one-seo-pack.2.3.16.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
