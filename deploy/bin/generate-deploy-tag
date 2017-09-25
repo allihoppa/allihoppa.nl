@@ -1,2 +1,4 @@
 #/usr/bin/env sh
-git show -s --format="%cI-%h" | sed -e 's/[:+]/-/g'
+
+COMMIT_HASH=$1
+git show $COMMIT_HASH -s --format="%cI-%h" | sed -e 's/[:+]/-/g'
