@@ -11,6 +11,11 @@ volumes:
     driver_opts:
       type: tmpfs
       device: tmpfs
+  tmp:
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
 
 networks:
   traefik:
@@ -35,10 +40,12 @@ services:
       - "traefik.frontend.rule=Host:www.allihoppa.nl,allihoppa.nl"
       - "traefik.port=8000"
       - "traefik.docker.network=lucasvanlierop-website_default"
+    read_only: true
     volumes:
       - apache-lock:/var/lock
       - apache-run:/var/run
       - /var/www/allihoppa/uploads:/var/www/public/wp-content/uploads
+      - tmp:/tmp
     hostname: www.allihoppa.nl
 
   mysql:
