@@ -30,7 +30,7 @@
     "require": {
         "ext-gd": "*",
         "atypisch/category-colors": "^1.1",
-        "johnpbloch/wordpress": "4.3.*",
+        "johnpbloch/wordpress": "4.4.*",
         "wpackagist-plugin/adminimize" : "1.8.4",
         "wpackagist-plugin/advanced-custom-fields" : "4.3.5",
         "wpackagist-plugin/akismet" : "2.6.1",
