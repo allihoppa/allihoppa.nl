@@ -4,6 +4,8 @@ set -e
 
 DAY_OF_THE_WEEK_NAME=$(date '+%A')
 
+timeout 1 wait-for-db ${MYSQL_DATABASE_HOST} ${MYSQL_ROOT_PASSWORD}
+
 mysqldump \
     -h ${MYSQL_DATABASE_HOST} \
     -u root \

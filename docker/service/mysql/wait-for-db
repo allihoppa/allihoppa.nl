@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+
+connect_to_db() {
+    local host=$1
+    local password=$2
+
+    mysql \
+        --host=${host} \
+        --user=root \
+        --password=${password} \
+        -e "select 1"
+}
+
+until connect_to_db $1 $2; do
+    echo "waiting for db to connect"
+done
