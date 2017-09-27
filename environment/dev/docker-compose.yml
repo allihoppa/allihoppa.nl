@@ -52,5 +52,6 @@ services:
     volumes:
       - ./db/init:/docker-entrypoint-initdb.d
       - ./db/data:/var/lib/mysql
+      - /tmp:/backup
     env_file:
       - ./db.env
