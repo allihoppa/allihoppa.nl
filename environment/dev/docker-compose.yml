@@ -47,6 +47,8 @@ services:
       service: mysql
     container_name: allihoppa-nl-db-dev
     user: $HOST_UID:$HOST_GID
+    environment:
+      MYSQL_DATABASE_HOST: localhost
     volumes:
       - ./db/init:/docker-entrypoint-initdb.d
       - ./db/data:/var/lib/mysql
