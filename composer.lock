@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c3367aacb816a454283fd6e39876ad5",
+    "content-hash": "fdd1a4cd4c8bcfd51b82d9a8d5fb0435",
     "packages": [
         {
             "name": "atypisch/category-colors",
@@ -588,16 +588,16 @@
         },
         {
             "name": "wpackagist-plugin/adminimize",
-            "version": "1.8.4",
+            "version": "1.11.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/adminimize/",
-                "reference": "tags/1.8.4"
+                "reference": "tags/1.11.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/adminimize.1.8.4.zip",
-                "reference": "tags/1.8.4",
+                "url": "https://downloads.wordpress.org/plugin/adminimize.1.11.2.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
