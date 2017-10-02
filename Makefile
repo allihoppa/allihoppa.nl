@@ -11,7 +11,7 @@ TMP_DIST_BUILD_DIR=$(DIST_BUILD_DIR)-tmp
 export DOCKER_DEPLOY_TAG=$(shell ${DEPLOY_DIR}/bin/generate-deploy-tag)
 
 .PHONY: all
-all: docker-base-images docker-dist-image
+all: docker-base-images docker-dist-image system-test
 
 .PHONY: quickstart
 quickstart:
@@ -84,6 +84,22 @@ docker-dist-image: docker-base-images
 
 	docker-compose -f environment/ci/docker-compose.yml build app
 	docker tag allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG} allihoppa/allihoppa.nl:latest
+
+system-test: #docker-dist-image
+	docker-compose \
+		-f environment/ci/docker-compose.yml \
+		up --force-recreate -d
+
+	docker-compose \
+	-f environment/ci/docker-compose.yml \
+	run --rm behat sh -c ' \
+		timeout -t 120 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
+		timeout -t 1200 vendor/bin/behat \
+	'
+
+	docker-compose \
+    		-f environment/ci/docker-compose.yml \
+    		down
 
 .PHONY: docker-images-persistent
 docker-images-persistent:

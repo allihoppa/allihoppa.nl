@@ -47,3 +47,11 @@ services:
     build:
       ../../docker/service/mysql
 
+
+  selenium-chrome:
+    image: selenium/standalone-chrome:3.3
+    container_name: psaccess-cms-selenium-chrome
+    volumes:
+      - ../../tests/Resources/uploads:/tmp/uploads
+
+
