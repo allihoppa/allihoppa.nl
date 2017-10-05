@@ -28,9 +28,9 @@ services:
     user: ${ALLIHOPPA_UID}:${ALLIHOPPA_GID}
     env_file:
       - ./db.env
-      - ../default/wordpress.secret.env
       - ../default/wordpress.env
       - ./wordpress.env
+      - ./wordpress.secret.env
     networks:
       default:
       traefik:

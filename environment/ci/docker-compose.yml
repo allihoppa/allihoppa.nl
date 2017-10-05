@@ -60,3 +60,8 @@ services:
     volumes:
       - ../../docker/service/selenium-chrome/entry_point-x11.sh:/opt/bin/entry_point.sh:ro
       - /tmp/.X11-unix:/tmp/.X11-unix
+
+  mail:
+    image: schickling/mailcatcher
+    container_name: allihoppa-nl-mail-ci
+
