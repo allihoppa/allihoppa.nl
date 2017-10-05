@@ -82,6 +82,8 @@ docker-dist-image: docker-base-images
 		${TMP_DIST_BUILD_DIR}/public \
 		${DIST_BUILD_DIR}
 
+	cp -r ${TMP_DIST_BUILD_DIR}/bin ${DIST_BUILD_DIR}
+
 	docker-compose -f environment/ci/docker-compose.yml build app
 	docker tag allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG} allihoppa/allihoppa.nl:latest
 
