@@ -1,0 +1,5 @@
+#/usr/bin/env bash
+
+set -x
+
+docker-compose -f environment/dev/docker-compose.yml exec app wp --path=/var/www/public/wordpress $@
