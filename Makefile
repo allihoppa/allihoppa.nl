@@ -95,8 +95,8 @@ system-test: #docker-dist-image
 	docker-compose \
 	-f environment/ci/docker-compose.yml \
 	run --rm behat sh -c ' \
-		timeout -t 120 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
-		timeout -t 1200 vendor/bin/behat \
+		timeout -t 60 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
+		timeout -t 120 vendor/bin/behat \
 	'
 
 	docker-compose \
