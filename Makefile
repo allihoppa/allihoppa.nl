@@ -100,8 +100,8 @@ system-test: #docker-dist-image
 	'
 
 	docker-compose \
-    		-f environment/ci/docker-compose.yml \
-    		down
+			-f environment/ci/docker-compose.yml \
+			down
 
 .PHONY: docker-images-persistent
 docker-images-persistent:
@@ -109,3 +109,4 @@ docker-images-persistent:
 	docker push allihoppa/allihoppa.nl:dev
 	docker push allihoppa/allihoppa.nl:latest
 	docker push allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
+
