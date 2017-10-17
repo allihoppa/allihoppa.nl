@@ -24,6 +24,7 @@ services:
     environment:
       PHP_IDE_CONFIG: "serverName=allihoppa.nl.localhost"
       XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+      SERVER_NAME: "allihoppa.nl.localhost"
     read_only: true
     tmpfs:
       - /var/lock:uid=${HOST_UID}
