@@ -80,31 +80,6 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @When I attach the file ":path" to the current drop-zone
-     */
-    public function iAttachTheFileToTheCurrentDropZone($path)
-    {
-        $resourcesDir = realpath(sprintf('%s/../../Resources', __DIR__));
-        $relativePath = ltrim($path, '/');
-        $fullPath = realpath(sprintf('%s/%s', $resourcesDir, $relativePath));
-        $sharedPath = sprintf('%s/%s', self::SHARED_WITH_SELENIUM_DIR, $relativePath);
-
-        if (!is_file($fullPath)) {
-            throw new InvalidArgumentException(sprintf('File doesn\'t exist (%s)', $fullPath));
-        }
-
-        $fields = $this->getSession()->getPage()->findAll('css', 'input[type="file"]');
-
-        if (count($fields) == 0) {
-            throw new ElementNotFoundException($this->getSession(), 'drop-zone upload field');
-        }
-
-        /** @var NodeElement $field */
-        $field = end($fields);
-        $field->attachFile($sharedPath);
-    }
-
-    /**
      * @When I wait until the url matches ":pattern"
      */
     public function iWaitUntilTheUrlMatches($pattern)
@@ -114,25 +89,5 @@ class FeatureContext extends MinkContext
 
             return true;
         });
-    }
-
-    /**
-     * Todo: move this to it's own Api context
-     * @Then I should see json key :key with value :value
-     */
-    public function iShouldSeeJsonKeyWithValue($key, $value)
-    {
-        $page = $this->getMink()->getSession()->getPage();
-
-        $responseData = json_decode($page->getContent());
-        if ($responseData->$key !== $value) {
-            throw new Exception(
-                sprintf(
-                    "Value was '%s', instead of expected '%s'",
-                    $responseData->$key,
-                    $value
-                )
-            );
-        }
     }
 }
