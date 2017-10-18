@@ -92,6 +92,8 @@ system-test: #docker-dist-image
 		-f environment/ci/docker-compose.yml \
 		up --force-recreate -d
 
+	./composer install
+
 	docker-compose \
 	-f environment/ci/docker-compose.yml \
 	run --rm behat sh -c ' \
