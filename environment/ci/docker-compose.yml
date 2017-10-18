@@ -39,11 +39,6 @@ services:
       - ../../:/var/www
     working_dir: /var/www
 
-#  selenium-chrome:
-#    extends:
-#      file: ../default/docker-compose.yml
-#      service: selenium-chrome
-
   selenium-chrome:
     extends:
       file: ../default/docker-compose.yml
@@ -52,14 +47,10 @@ services:
     # X windows cannot run as root
     user: $HOST_UID:$HOST_GID
     environment:
-      DISPLAY: $DISPLAY
       HOME: /home
     # Chrome needs to have a home dir it can write to
     tmpfs:
       - /home:uid=$HOST_UID
-    volumes:
-      - ../../docker/service/selenium-chrome/entry_point-x11.sh:/opt/bin/entry_point.sh:ro
-      - /tmp/.X11-unix:/tmp/.X11-unix
 
   mail:
     image: schickling/mailcatcher
