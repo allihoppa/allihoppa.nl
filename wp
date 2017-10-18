@@ -1,7 +1,5 @@
 #/usr/bin/env bash
 
-set -x
-
 docker-compose \
     -f environment/dev/docker-compose.yml \
     run --rm app \
