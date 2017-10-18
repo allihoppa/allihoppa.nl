@@ -56,4 +56,7 @@ WORKDIR /var/www
 # Remove all default files provided by apache
 RUN rm -rf *
 
+ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
+RUN chmod o+rx /usr/local/bin/wp
+
 CMD ["/usr/sbin/apache2", "-DFOREGROUND"]

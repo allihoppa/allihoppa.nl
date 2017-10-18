@@ -18,6 +18,3 @@ RUN apt-get update \
 
 # Add xdebug config
 COPY xdebug.ini /etc/php5/conf.d/xdebug-extra.ini
-
-ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
-RUN chmod o+rx /usr/local/bin/wp
