@@ -2,20 +2,15 @@
 
 namespace App\Tests\System;
 
-use Behat\Mink\Element\NodeElement;
-use Behat\Mink\Exception\ElementNotFoundException;
+use Behat\Mink\Selector\Xpath\Escaper;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\MinkExtension\Context\RawMinkContext;
 use Exception;
-use InvalidArgumentException;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext extends MinkContext
 {
-//    const SHARED_WITH_SELENIUM_DIR = DIRECTORY_SEPARATOR . 'tmp';
-
     /**
      * Initializes context.
      *
@@ -37,7 +32,22 @@ class FeatureContext extends MinkContext
         });
     }
 
-    public function spin($lambda, $wait = 60)
+    /**
+     * @Given I wait for button :selector
+     */
+    public function iWaitForButton($selector)
+    {
+        $this->spin(function () use ($selector) {
+            return $this->getSession()->getPage()->find('named',
+                array(
+                    'button',
+                    Escaper::escapeLiteral($selector)
+                )
+            );
+        });
+    }
+
+    public function spin($lambda, $wait = 10)
     {
         for ($i = 0; $i < $wait; $i++) {
             try {
@@ -65,29 +75,49 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @When I click :arg1
+     * Fills in WYSIWYG editor with specified id.
+     *
+     * @Given /^(?:|I )fill in "(?P<text>[^"]*)" in WYSIWYG editor "(?P<iframe>[^"]*)"$/
+     *
+     * Based on:
+     * https://wiki.mahara.org/wiki/Testing/Behat_Testing/Steps#TinyMCE
+     * https://gitorious.org/mahara/mahara/commit/fc50b8ff7459b0a349c0014908abc21bcc12cf85?p=mahara:mahara.git;a=commitdiff;h=fc50b8ff7459b0a349c0014908abc21bcc12cf85;hp=7ccee4cc1b11abc66a5e6c19617c8951e64e8879
      */
-    public function iClick($selector)
+    public function iFillInInWYSIWYGEditor($text, $iframe)
     {
-        $page = $this->getSession()->getPage();
-        $element = $page->find('css', $selector);
-
-        if (empty($element)) {
-            throw new Exception("No html element found for the selector ('$selector')");
+        try {
+            $this->getSession()->switchToIFrame($iframe);
+        } catch (Exception $e) {
+            throw new \Exception(sprintf("No iframe with id '%s' found on the page '%s'.", $iframe, $this->getSession()->getCurrentUrl()));
         }
-
-        $element->click();
+        $this->getSession()->executeScript("document.body.innerHTML = '<p>" . $text . "</p>'");
+        $this->getSession()->switchToIFrame();
     }
 
     /**
-     * @When I wait until the url matches ":pattern"
+     * Login into the reserved area of this wordpress
+     *
+     * @Given /^I am logged in as "([^"]*)" with password "([^"]*)"$/
      */
-    public function iWaitUntilTheUrlMatches($pattern)
+    public function login($username, $password)
     {
-        $this->spin(function (RawMinkContext $context) use ($pattern) {
-            $context->assertSession()->addressMatches($pattern);
+        $this->visit("wp-login.php");
+        $currentPage = $this->getSession()->getPage();
+        $currentPage->fillField('user_login', $username);
+        $currentPage->fillField('user_pass', $password);
+        $currentPage->findButton('wp-submit')->click();
+        if ($this->getSession()->getPage()->hasContent('Dashboard') !== true) {
+            throw new \Behat\Mink\Exception\ResponseTextException('Dashboard was not found');
+        }
+    }
 
-            return true;
+    /**
+     * @When I wait for until I can publish
+     */
+    public function iWaitForUntilICanPublish()
+    {
+        $this->spin(function () {
+            return $this->getSession()->getPage()->find('css', "a.submitdelete")->isVisible();
         });
     }
 }
