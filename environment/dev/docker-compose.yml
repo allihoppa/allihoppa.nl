@@ -24,13 +24,13 @@ services:
     environment:
       PHP_IDE_CONFIG: "serverName=allihoppa.nl.localhost"
       XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+      SERVER_NAME: "allihoppa.nl.localhost"
     read_only: true
     tmpfs:
       - /var/lock:uid=${HOST_UID}
       - /var/run:uid=${HOST_UID}
       - /tmp:uid=${HOST_UID}
     hostname: allihoppa.nl.localhost
-
     networks:
       default:
       traefik:
@@ -55,3 +55,32 @@ services:
       - /tmp:/backup
     env_file:
       - ./db.env
+
+  selenium-chrome:
+    extends:
+      file: ../ci/docker-compose.yml
+      service: selenium-chrome
+    # X windows cannot run as root
+    user: $HOST_UID:$HOST_GID
+    environment:
+      DISPLAY: $DISPLAY
+      HOME: /home
+    # Chrome needs to have a home dir it can write to
+    tmpfs:
+      - /home:uid=$HOST_UID
+    volumes:
+      - ../../docker/service/selenium-chrome/entry_point-x11.sh:/opt/bin/entry_point.sh:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix
+
+  mail:
+    image: schickling/mailcatcher
+    container_name: allihoppa-nl-mail-dev
+    networks:
+      default:
+      traefik:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=allihoppa-mail"
+      - "traefik.frontend.rule=Host:allihoppa-mail.nl.localhost"
+      - "traefik.port=1080"
+      - "traefik.docker.network=traefik_webgateway"

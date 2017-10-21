@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+until test_output=`curl -k -s --fail ${1}`; do
+    echo "waiting for ${1} to become available"
+    sleep 0.5;
+done
+
+echo "${1} is available"

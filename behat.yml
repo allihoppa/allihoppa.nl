@@ -1,0 +1,18 @@
+default:
+  suites:
+    default:
+      contexts:
+        - App\Tests\System\FeatureContext
+      paths:
+        - %paths.base%/tests/system
+
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://app:8000
+#      goutte:
+#
+      sessions:
+          selenium:
+            selenium2:
+              wd_host: "http://selenium-chrome:4444/wd/hub"
+              browser: chrome

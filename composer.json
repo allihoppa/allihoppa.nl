@@ -46,6 +46,11 @@
         "wpackagist-plugin/public-post-preview": "^2.6",
         "wpackagist-plugin/wp-smtp-config": "^1.1"
     },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\System\\": "tests/system/bootstrap"
+        }
+    },
     "extra": {
         "installer-paths": {
             "public/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
@@ -63,5 +68,10 @@
                 "vendor:koodimonni-theme-language"
             ]
         }
+    },
+    "require-dev": {
+        "behat/behat": "^3.4",
+        "behat/mink-extension": "^2.2",
+        "behat/mink-selenium2-driver": "^1.3"
     }
 }

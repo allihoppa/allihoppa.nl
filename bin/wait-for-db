@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+DIR=`dirname $(readlink -f $0)`
+
+until ${DIR}/test-db-connection.php; do
+    >&2 echo "Waiting for database to become available"
+  sleep 1
+done

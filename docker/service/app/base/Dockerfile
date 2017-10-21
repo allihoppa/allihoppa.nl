@@ -49,9 +49,6 @@ RUN rm /etc/apache2/sites-available/default-ssl \
 # Disable sending info about PHP in HTTP Response headers
     && sed -i 's/expose_php = On/expose_php = Off/' /etc/php5/apache2/php.ini
 
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 RUN a2enmod rewrite
 
 WORKDIR /var/www
@@ -59,5 +56,7 @@ WORKDIR /var/www
 # Remove all default files provided by apache
 RUN rm -rf *
 
-CMD ["/usr/local/bin/docker-entrypoint.sh"]
+ADD https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/wp
+RUN chmod o+rx /usr/local/bin/wp
 
+CMD ["/usr/sbin/apache2", "-DFOREGROUND"]

@@ -9,3 +9,50 @@ services:
     image: allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
     build:
       context: ../../docker/service/app/dist
+    user: $HOST_UID:$HOST_GID
+    env_file:
+      - ./db.env
+      - ./wordpress.env
+    read_only: true
+    tmpfs:
+      - /var/lock:uid=${HOST_UID}
+      - /var/run:uid=${HOST_UID}
+      - /tmp:uid=${HOST_UID}
+      - /var/www/public/wp-content/uploads
+
+  mysql:
+      extends:
+        file: ../default/docker-compose.yml
+        service: mysql
+      container_name: allihoppa-nl-db-ci
+      user: $HOST_UID:$HOST_GID
+      volumes:
+        - ./db/init:/docker-entrypoint-initdb.d
+      tmpfs:
+        - /var/lib/mysql:uid=$HOST_UID
+      env_file:
+        - ./db.env
+
+  behat:
+    image: php:7.1-alpine
+    volumes:
+      - ../../:/var/www
+    working_dir: /var/www
+
+  selenium-chrome:
+    extends:
+      file: ../default/docker-compose.yml
+      service: selenium-chrome
+    container_name: allihoppa-nl-selenium-chrome-ci
+    # X windows cannot run as root
+    user: $HOST_UID:$HOST_GID
+    environment:
+      HOME: /home
+    # Chrome needs to have a home dir it can write to
+    tmpfs:
+      - /home:uid=$HOST_UID
+
+  mail:
+    image: schickling/mailcatcher
+    container_name: allihoppa-nl-mail-ci
+

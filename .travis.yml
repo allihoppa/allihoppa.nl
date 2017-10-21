@@ -9,10 +9,11 @@ services:
 script:
   - docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD}
   - echo "WP_SMTP_PASSWORD=test" > environment/default/wordpress.secret.env
+  - docker network create traefik_webgateway
   - make
 
 after_failure:
-  - ./docker-compose -f env/ci/docker-compose.yml logs
+  - docker-compose -f environment/ci/docker-compose.yml logs
 
 deploy:
   - provider: script

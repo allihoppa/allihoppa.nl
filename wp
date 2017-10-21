@@ -1,0 +1,7 @@
+#/usr/bin/env bash
+
+docker-compose \
+    -f environment/dev/docker-compose.yml \
+    run --rm app \
+    wp --path=/var/www/public/wordpress \
+    $@
