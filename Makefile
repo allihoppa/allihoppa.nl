@@ -87,7 +87,7 @@ docker-dist-image: docker-base-images
 	docker-compose -f environment/ci/docker-compose.yml build app
 	docker tag allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG} allihoppa/allihoppa.nl:latest
 
-system-test: #docker-dist-image
+system-test: docker-dist-image
 	docker-compose \
 		-f environment/ci/docker-compose.yml \
 		up --force-recreate -d
