@@ -18,10 +18,19 @@ define('WPLANG', 'nl_NL');
 define('WP_AUTO_UPDATE_CORE', false );
 define('WP_ENV', getenv('WP_ENV'));
 define('WP_DEBUG', getenv('WP_DEBUG') === 'true');
-define('WP_SITEURL', getenv('WP_SITEURL'));
-define('WP_HOME', getenv('WP_HOME'));
 define('WP_CONTENT_DIR',    __DIR__ . '/wp-content');
 define('WP_CONTENT_URL',    WP_HOME . '/wp-content');
+function generateWpHome()
+{
+    $httpHostParts = parse_url($_SERVER['HTTP_HOST']);
+
+    $host = $httpHostParts['host'];
+    $port = !empty($httpHostParts['port']) ? $httpHostParts['port'] : 80;
+
+    return "http://$host:$port";
+}
+define('WP_HOME', generateWpHome());
+define('WP_SITEURL', WP_HOME . '/wordpress');
 
 define('WP_SMTP_HOST', getenv('WP_SMTP_HOST'));
 define('WP_SMTP_PORT', (int) getenv('WP_SMTP_PORT'));
