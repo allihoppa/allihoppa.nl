@@ -57,6 +57,7 @@ services:
       - ./db.env
 
   selenium-chrome:
+    container_name: allihoppa-nl-selenium-chrome-dev
     extends:
       file: ../ci/docker-compose.yml
       service: selenium-chrome
