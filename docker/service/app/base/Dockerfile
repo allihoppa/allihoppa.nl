@@ -5,6 +5,7 @@ MAINTAINER Lucas van Lierop <me@lucasvanlierop.nl>
 ENV APACHE_PID_FILE=/var/run/apache2.pid
 ENV APACHE_RUN_DIR=/var/run/apache2
 ENV APACHE_LOCK_DIR=/var/lock/apache2
+ENV HTTP_PORT=8000
 
 RUN apt-get update && \
     apt-get install -y \
@@ -41,7 +42,8 @@ RUN rm /etc/apache2/sites-available/default-ssl \
     && rm -rf /var/lock /var/run \
 
 # Run on a higher port number (allows running as a non root user)
-    && sed -i "s/80/8000/" /etc/apache2/ports.conf \
+    && sed -i "s/80/${HTTP_PORT}/" /etc/apache2/ports.conf \
+    && sed -i "s/80/${HTTP_PORT}/" /etc/apache2/sites-available/default \
 
 # Disable dir listing
     && a2dismod autoindex \

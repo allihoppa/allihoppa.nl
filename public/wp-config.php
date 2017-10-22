@@ -1,4 +1,5 @@
 <?php
+const LOCALHOST = 'localhost';
 define('DB_NAME', getenv('DB_NAME'));
 define('DB_USER', getenv('DB_USER'));
 define('DB_PASSWORD', getenv('DB_PASSWORD'));
@@ -20,15 +21,21 @@ define('WP_ENV', getenv('WP_ENV'));
 define('WP_DEBUG', getenv('WP_DEBUG') === 'true');
 function generateWpHome()
 {
+    if (!empty($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+        return $_SERVER['HTTP_X_FORWARDED_PROTO'] .'://'
+            . $_SERVER['HTTP_X_FORWARDED_HOST'];
+    }
+
     $httpHostParts = parse_url($_SERVER['HTTP_HOST']);
 
-    $host = $httpHostParts['host'];
-    $port = !empty($httpHostParts['port']) ? $httpHostParts['port'] : 80;
+    $host = !empty($httpHostParts['host']) ? $httpHostParts['host'] : LOCALHOST;
+    $port = getenv('HTTP_PORT');
 
     return "http://$host:$port";
 }
 define('WP_HOME', generateWpHome());
 define('WP_SITEURL', WP_HOME . '/wordpress');
+define('INTERNAL_WP_HOME', 'http://' . LOCALHOST . ':' . getenv('HTTP_PORT'));
 
 define('WP_CONTENT_DIR', __DIR__ . '/wp-content');
 define('WP_CONTENT_URL', WP_HOME . '/wp-content');
