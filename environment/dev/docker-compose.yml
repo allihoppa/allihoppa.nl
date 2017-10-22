@@ -56,6 +56,12 @@ services:
     env_file:
       - ./db.env
 
+  behat:
+    image: php:7.1-alpine
+    volumes:
+      - ../../:/var/www
+    working_dir: /var/www
+
   selenium-chrome:
     container_name: allihoppa-nl-selenium-chrome-dev
     extends:

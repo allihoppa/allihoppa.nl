@@ -3,6 +3,8 @@
 SHELL=/bin/bash
 
 PROJECT_DIR=$(shell pwd)
+
+ENV ?= dev
 ENV_DIR=${PROJECT_DIR}/env/${ENV}
 DEPLOY_DIR=${PROJECT_DIR}/deploy
 
@@ -89,21 +91,21 @@ docker-dist-image: docker-base-images
 
 system-test: docker-dist-image
 	docker-compose \
-		-f environment/ci/docker-compose.yml \
+		-f environment/$(ENV)/docker-compose.yml \
 		up --force-recreate -d
 
 	./composer install
 
 	docker-compose \
-	-f environment/ci/docker-compose.yml \
+	-f environment/$(ENV)/docker-compose.yml \
 	run --rm behat sh -c ' \
 		timeout -t 60 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
 		timeout -t 120 vendor/bin/behat \
 	'
 
 	docker-compose \
-			-f environment/ci/docker-compose.yml \
-			down
+		-f environment/$(ENV)/docker-compose.yml \
+		down
 
 .PHONY: docker-images-persistent
 docker-images-persistent:
