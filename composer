@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker-compose -f environment/dev/docker-compose.yml run app composer "$@"
+docker-compose -f environment/dev/docker-compose.yml run --rm app composer "$@"
