@@ -97,11 +97,12 @@ system-test: docker-dist-image
 	./composer install
 
 	docker-compose \
-	-f environment/$(ENV)/docker-compose.yml \
-	run --rm behat sh -c ' \
-		timeout -t 60 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
-		timeout -t 120 vendor/bin/behat \
-	'
+		-f environment/$(ENV)/docker-compose.yml \
+		run --rm behat sh -c ' \
+			timeout -t 60 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
+			timeout -t 120 vendor/bin/behat \
+		' || \
+	(docker-compose -f environment/$(ENV)/docker-compose.yml logs | grep -i error && exit 1)
 
 	docker-compose \
 		-f environment/$(ENV)/docker-compose.yml \

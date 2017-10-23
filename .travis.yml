@@ -12,9 +12,6 @@ script:
   - docker network create traefik_webgateway
   - make
 
-after_failure:
-  - docker-compose -f environment/ci/docker-compose.yml logs
-
 deploy:
   - provider: script
     skip_cleanup: true
