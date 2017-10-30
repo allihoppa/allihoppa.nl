@@ -2,6 +2,7 @@
 
 SHELL=/bin/bash
 
+ENV ?= dev
 PROJECT_DIR=$(shell pwd)
 
 ENV ?= dev
@@ -89,6 +90,16 @@ docker-dist-image: docker-base-images
 	docker-compose -f environment/ci/docker-compose.yml build app
 	docker tag allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG} allihoppa/allihoppa.nl:latest
 
+.PHONY: system-test
+ifeq ($(ENV), dev)
+system-test:
+	docker-compose \
+	-f environment/$(ENV)/docker-compose.yml \
+	run --rm behat sh -c ' \
+		timeout -t 60 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
+		timeout -t 120 vendor/bin/behat \
+	'
+else
 system-test: docker-dist-image
 	docker-compose \
 		-f environment/$(ENV)/docker-compose.yml \
@@ -107,6 +118,8 @@ system-test: docker-dist-image
 	docker-compose \
 		-f environment/$(ENV)/docker-compose.yml \
 		down
+endif
+
 
 .PHONY: docker-images-persistent
 docker-images-persistent:
