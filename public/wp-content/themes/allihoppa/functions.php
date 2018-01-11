@@ -130,9 +130,7 @@ function fixCategoryPagination($queryString)
 {
     if (isset($queryString['name']) && $queryString['name'] == 'page' && isset($queryString['page'])) {
         unset($queryString['name']);
-        // 'page' in the query_string looks like '/2', so i'm exploding it
-        list($delim, $page_index) = explode('/', $queryString['page']);
-        $queryString['paged'] = $page_index;
+        $queryString['paged'] = trim($queryString['page']);
     }
     return $queryString;
 }
