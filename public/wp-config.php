@@ -19,6 +19,7 @@ define('WPLANG', 'nl_NL');
 define('WP_AUTO_UPDATE_CORE', false);
 define('WP_ENV', getenv('WP_ENV'));
 define('WP_DEBUG', getenv('WP_DEBUG') === 'true');
+convinceWordPressToUseHttpsProtocolInUrlsWhenBehindAnSslOffloadingProxy();
 function generateWpHome()
 {
     if (!empty($_SERVER['HTTP_X_FORWARDED_HOST'])) {
@@ -53,3 +54,10 @@ if (!defined('ABSPATH'))
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
+
+function convinceWordPressToUseHttpsProtocolInUrlsWhenBehindAnSslOffloadingProxy()
+{
+    if ($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+        $_SERVER['HTTPS'] = true;
+    }
+}
