@@ -12,7 +12,7 @@
         <!-- Zanox affialiate verification -->
         <meta name="verification" content="48aad21cf3aa4cca250d472f9e406d9a"/>
 
-        <link href='http://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/fonts.css" type="text/css" media="screen"/>
         <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen"/>
         <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/menu.css" type="text/css" media="screen"/>
@@ -31,7 +31,7 @@
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>"/>
 
         <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/browserfixes.css" type="text/css"
               media="screen"/>
         <![endif]-->
