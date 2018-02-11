@@ -2,6 +2,16 @@
 
 SHELL=/bin/bash
 
+export HOST_UID=$(shell id -u)
+export HOST_GID=$(shell id -g)
+
+PLATFORM := $(shell uname -s)
+ifeq ($(PLATFORM),Darwin)
+export DOCKER_HOST_NAME_OR_IP := docker.for.mac.localhost
+else ifeq ($(PLATFORM),Linux)
+export DOCKER_HOST_NAME_OR_IP := $(shell ip -f inet addr show docker0 | grep -Po 'inet \K[\d.]+')
+endif
+
 ENV ?= dev
 PROJECT_DIR=$(shell pwd)
 

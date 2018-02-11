@@ -23,7 +23,7 @@ services:
       - ./wordpress.env
     environment:
       PHP_IDE_CONFIG: "serverName=allihoppa.nl.localhost"
-      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_IP}"
+      XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_NAME_OR_IP}"
       SERVER_NAME: "allihoppa.nl.localhost"
     read_only: true
     tmpfs:
