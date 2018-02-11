@@ -153,19 +153,10 @@ function filter_site_url_use_internal_url_for_cron_jobs($url)
 }
 
 // Apparently WordPress stores the absolute url (at the moment of creation) in the
-// Post content, this has to be stripped to allow serving the website via HTTPS
-// Since absolute url's are causing trouble anyway strip out HTTPS version as well
+// Post content, the host and protocol have to be stripped from internal urls
+// to allow serving the website via HTTPS
 add_filter('the_content', 'filter_the_content_use_relative_urls_in_post_content');
 function filter_the_content_use_relative_urls_in_post_content($postContent)
 {
-    $wpHomeHttp = str_replace('https://', 'http://', WP_HOME);
-    return str_replace(
-        $wpHomeHttp,
-        '',
-        str_replace(
-            WP_HOME,
-            '',
-            $postContent
-        )
-    );
+    return preg_replace('#http(s?)://(www\.)?allihoppa\.(localhost|nl)#', '', $postContent);
 }
