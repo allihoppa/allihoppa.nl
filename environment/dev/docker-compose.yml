@@ -22,22 +22,22 @@ services:
       - ./db.env
       - ./wordpress.env
     environment:
-      PHP_IDE_CONFIG: "serverName=allihoppa.nl.localhost"
+      PHP_IDE_CONFIG: "serverName=allihoppa.localhost"
       XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_NAME_OR_IP}"
-      SERVER_NAME: "allihoppa.nl.localhost"
+      SERVER_NAME: "allihoppa.localhost"
     read_only: true
     tmpfs:
       - /var/lock:uid=${HOST_UID}
       - /var/run:uid=${HOST_UID}
       - /tmp:uid=${HOST_UID}
-    hostname: allihoppa.nl.localhost
+    hostname: allihoppa.localhost
     networks:
       default:
       traefik:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=allihoppa"
-      - "traefik.frontend.rule=Host:allihoppa.nl.localhost"
+      - "traefik.frontend.rule=Host:allihoppa.localhost"
       - "traefik.port=8000"
       - "traefik.docker.network=traefik_webgateway"
 
