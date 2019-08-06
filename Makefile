@@ -1,4 +1,4 @@
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := help
 
 SHELL=/bin/bash
 
@@ -22,6 +22,10 @@ DEPLOY_DIR=${PROJECT_DIR}/deploy
 DIST_BUILD_DIR=docker/service/app/dist/build
 TMP_DIST_BUILD_DIR=$(DIST_BUILD_DIR)-tmp
 export DOCKER_DEPLOY_TAG=$(shell ${DEPLOY_DIR}/bin/generate-deploy-tag)
+
+.PHONY: help
+help:
+	@echo "run make start to start the project"
 
 .PHONY: all
 all: docker-base-images docker-dist-image system-test
