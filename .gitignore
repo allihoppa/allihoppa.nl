@@ -1,5 +1,6 @@
 /bower_components
 /downloaded
+/configProduction.php
 /docker/service/app/dist/build*
 !/environment/prod
 /environment/prod/*.env
