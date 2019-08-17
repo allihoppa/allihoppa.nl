@@ -32,17 +32,18 @@ all: docker-base-images docker-dist-image system-test
 
 .PHONY: quickstart
 quickstart:
-	docker-compose -f environment/dev/docker-compose.yml up
+	$(DOCKER_COMPOSE) up
 
 .PHONY: start
 start: docker-base-images quickstart
 
 .PHONY: docker-base-images
+docker-base-images: ENV=default
 docker-base-images:
-	docker-compose -f environment/default/docker-compose.yml build mysql
-	docker-compose -f environment/default/docker-compose.yml build app-base
-	docker-compose -f environment/default/docker-compose.yml build app-dev
-	docker-compose -f environment/default/docker-compose.yml build js-build
+	$(DOCKER_COMPOSE) build mysql
+	$(DOCKER_COMPOSE) build app-base
+	$(DOCKER_COMPOSE) build app-dev
+	$(DOCKER_COMPOSE) build js-build
 
 .PHONY: docker-dist-image
 docker-dist-image: docker-base-images
@@ -142,3 +143,11 @@ docker-images-persistent:
 	docker push allihoppa/allihoppa.nl:latest
 	docker push allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
 
+
+# Docker Compose targets
+
+DOCKER_COMPOSE=docker-compose -f environment/$(ENV)/docker-compose.yml
+
+.PHONY: entrypoint-docker-compose
+entrypoint-docker-compose:
+	$(DOCKER_COMPOSE) $(ARGS)
