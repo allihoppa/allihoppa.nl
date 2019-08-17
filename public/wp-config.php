@@ -1,9 +1,9 @@
 <?php
-$pathToConfig = '../private/configProduction.php';
+$pathToConfig = __DIR__ . '/../private/configProduction.php';
 if (file_exists($pathToConfig)) {
     require_once $pathToConfig;
 } else {
-    require_once '../configFromEnv.php';
+    require_once __DIR__ . '/../configFromEnv.php';
 }
 
 const LOCALHOST = 'localhost';
