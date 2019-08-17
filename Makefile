@@ -105,8 +105,10 @@ docker-dist-image: docker-base-images
 
 	cp -r ${TMP_DIST_BUILD_DIR}/bin ${TMP_DIST_BUILD_DIR}/configFromEnv.php ${DIST_BUILD_DIR}/
 
-	docker-compose -f environment/ci/docker-compose.yml build app
-	docker tag allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG} allihoppa/allihoppa.nl:latest
+	docker build \
+		docker/service/app/dist \
+		-t allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG} \
+		-t allihoppa/allihoppa.nl:latest
 
 .PHONY: system-test
 ifeq ($(ENV), dev)

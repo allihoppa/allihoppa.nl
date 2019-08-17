@@ -2,13 +2,8 @@ version: "2"
 
 services:
   app:
-    extends:
-      file: ../default/docker-compose.yml
-      service: app
     container_name: allihoppa-nl-app-ci
     image: allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
-    build:
-      context: ../../docker/service/app/dist
     user: ${DEPLOY_UID}:${DEPLOY_GID}
     env_file:
       - ./db.env

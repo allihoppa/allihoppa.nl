@@ -36,10 +36,6 @@ services:
     environment:
       HOME: /home
 
-  app:
-    image: allihoppa/allihoppa.nl
-    container_name: allihoppa-nl-app
-
   mysql:
     container_name: allihoppa-nl-mysql
     image: allihoppa/mysql:5.7
