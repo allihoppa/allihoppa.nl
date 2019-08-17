@@ -51,7 +51,18 @@ docker-base-images:
 .PHONY: docker-dist-image
 docker-dist-image: docker-base-images
 	rm -rf ${TMP_DIST_BUILD_DIR}
-	git clone -q --depth=1 file://$(shell pwd) ${TMP_DIST_BUILD_DIR}
+	mkdir -p ${TMP_DIST_BUILD_DIR}
+	cp -R \
+		bin \
+		bower.json \
+		composer.json \
+		composer.lock \
+		configFromEnv.php \
+		gulpfile.js \
+		package.json \
+		public \
+		vendor \
+		${TMP_DIST_BUILD_DIR}/
 
 	# Create composer, bower and npm cache dirs
 	mkdir -p \
