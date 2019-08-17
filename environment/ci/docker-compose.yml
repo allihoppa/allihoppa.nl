@@ -19,6 +19,7 @@ services:
       - /var/run:uid=${DEPLOY_UID}
       - /tmp:uid=${DEPLOY_UID}
       - /var/www/public/wp-content/uploads:uid=${DEPLOY_UID}
+    hostname: ci.allihoppa.localhost
 
   mysql:
       extends:
