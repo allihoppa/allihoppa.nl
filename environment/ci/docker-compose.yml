@@ -9,27 +9,27 @@ services:
     image: allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
     build:
       context: ../../docker/service/app/dist
-    user: $HOST_UID:$HOST_GID
+    user: ${DEPLOY_UID}:${DEPLOY_GID}
     env_file:
       - ./db.env
       - ./wordpress.env
     read_only: true
     tmpfs:
-      - /var/lock:uid=${HOST_UID}
-      - /var/run:uid=${HOST_UID}
-      - /tmp:uid=${HOST_UID}
-      - /var/www/public/wp-content/uploads
+      - /var/lock:uid=${DEPLOY_UID}
+      - /var/run:uid=${DEPLOY_UID}
+      - /tmp:uid=${DEPLOY_UID}
+      - /var/www/public/wp-content/uploads:uid=${DEPLOY_UID}
 
   mysql:
       extends:
         file: ../default/docker-compose.yml
         service: mysql
       container_name: allihoppa-nl-db-ci
-      user: $HOST_UID:$HOST_GID
+      user: ${DEPLOY_UID}:${DEPLOY_GID}
       volumes:
         - ./db/init:/docker-entrypoint-initdb.d
       tmpfs:
-        - /var/lib/mysql:uid=$HOST_UID
+        - /var/lib/mysql:uid=${DEPLOY_GID}
       env_file:
         - ./db.env
 
@@ -55,4 +55,3 @@ services:
   mail:
     image: schickling/mailcatcher
     container_name: allihoppa-nl-mail-ci
-

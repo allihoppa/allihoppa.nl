@@ -5,6 +5,9 @@ SHELL=/bin/bash
 export HOST_UID=$(shell id -u)
 export HOST_GID=$(shell id -g)
 
+export DEPLOY_UID=2000
+export DEPLOY_GID=2000
+
 PLATFORM := $(shell uname -s)
 ifeq ($(PLATFORM),Darwin)
 export DOCKER_HOST_NAME_OR_IP := docker.for.mac.localhost
