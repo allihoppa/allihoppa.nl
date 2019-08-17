@@ -45,12 +45,12 @@ services:
       service: selenium-chrome
     container_name: allihoppa-nl-selenium-chrome-ci
     # X windows cannot run as root
-    user: $HOST_UID:$HOST_GID
+    user: ${HOST_UID}:${HOST_GID}
     environment:
       HOME: /home
     # Chrome needs to have a home dir it can write to
     tmpfs:
-      - /home:uid=$HOST_UID
+      - /home:uid=${HOST_UID}
 
   mail:
     image: schickling/mailcatcher
