@@ -1,5 +1,5 @@
 /bower_components
-/downloaded
+/downloaded*
 /configProduction.php
 /docker/service/app/dist/build*
 !/environment/prod
