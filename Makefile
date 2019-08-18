@@ -26,6 +26,9 @@ DIST_BUILD_DIR=docker/service/app/dist/build
 TMP_DIST_BUILD_DIR=$(DIST_BUILD_DIR)-tmp
 export DOCKER_DEPLOY_TAG=$(shell ${DEPLOY_DIR}/bin/generate-deploy-tag)
 
+DOCKER_COMPOSE_FILES=environment/$(ENV)/docker-compose.yml
+DOCKER_COMPOSE=docker-compose -f $(DOCKER_COMPOSE_FILES)
+
 .PHONY: help
 help:
 	@echo "run make start to start the project"
@@ -159,9 +162,6 @@ docker-images-persistent:
 	docker push allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
 
 
-# Docker Compose targets
-
-DOCKER_COMPOSE=docker-compose -f environment/$(ENV)/docker-compose.yml
 
 .PHONY: entrypoint-docker-compose
 entrypoint-docker-compose:
