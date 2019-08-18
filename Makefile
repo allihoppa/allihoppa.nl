@@ -124,19 +124,11 @@ docker-dist-image: docker-base-images
 		-t allihoppa/allihoppa.nl:latest
 
 .PHONY: system-test
-ifeq ($(ENV), dev)
-system-test:
-	docker-compose \
-	-f environment/$(ENV)/docker-compose.yml \
-	run --rm behat sh -c ' \
-		timeout -t 60 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
-		timeout -t 120 vendor/bin/behat \
-	'
-else
+system-test: ENV=ci
+system-test: DOCKER_COMPOSE_FILES+=-f environment/ci/docker-compose-debug.yml
 system-test: docker-dist-image
-	docker-compose \
-		-f environment/$(ENV)/docker-compose.yml \
-		up --force-recreate -d
+	$(DOCKER_COMPOSE) down
+	$(DOCKER_COMPOSE) up  -d
 
 	./composer install
 
@@ -146,13 +138,15 @@ system-test: docker-dist-image
 			timeout -t 60 tests/system/wait-until-website-becomes-available 'http://app:8000/admin' && \
 			timeout -t 120 vendor/bin/behat \
 		' || \
-	(docker-compose -f environment/$(ENV)/docker-compose.yml logs && exit 1)
+	($(DOCKER_COMPOSE) logs && exit 1)
 
-	docker-compose \
-		-f environment/$(ENV)/docker-compose.yml \
-		down
-endif
-
+	[[ -z "${ERROR_LOGS}" ]] || (echo "There were errors:\n" && echo ${ERROR_LOGS} && exit 1)
+	$(DOCKER_COMPOSE) logs app > environment/ci/app.log
+	@grep -i 'error' environment/ci/app.log && ( \
+		echo "Test completed succesfully but the application log contains errors:" && \
+		cat environment/ci/app.log | grep --color -E 'error|$$' \
+		&& exit 1 \
+	)
 
 .PHONY: docker-images-persistent
 docker-images-persistent:
