@@ -28,7 +28,6 @@ services:
     user: ${DEPLOY_UID}:${DEPLOY_GID}
     env_file:
       - ./db.env
-      - ../default/wordpress.env
       - ./wordpress.env
       - ./wordpress.secret.env
     networks:

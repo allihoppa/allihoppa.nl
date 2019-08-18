@@ -7,21 +7,32 @@ networks:
 
 services:
   js-build:
-    extends:
-      file: ../default/docker-compose.yml
-      service: js-build
     container_name: allihoppa-nl-js-build-dev
+    image: allihoppa/allihoppa.nl:js-build
+    environment:
+      HOME: /tmp
+    user: $HOST_UID:$HOST_GID
+    volumes:
+      # Bower cache
+      - ~/.cache/bower:/tmp/.cache/bower
+      # NPM config
+      - ~/.npm/:/tmp/.npm/
+      # Workspace
+      - ../../:/workspace/
     command: sh -c "npm install --no-optional && gulp"
 
   app:
-    extends:
-      file: ../default/docker-compose.yml
-      service: app-dev
     container_name: allihoppa-nl-app-dev
+    image: allihoppa/allihoppa.nl:dev
+    user: $HOST_UID:$HOST_GID
+    volumes:
+      - ../../:/var/www
+      - ~/.composer/:/home/.composer
     env_file:
       - ./db.env
       - ./wordpress.env
     environment:
+      HOME: /home
       PHP_IDE_CONFIG: "serverName=allihoppa.localhost"
       XDEBUG_CONFIG: "remote_host=${DOCKER_HOST_NAME_OR_IP}"
       SERVER_NAME: "allihoppa.localhost"
@@ -42,10 +53,8 @@ services:
       - "traefik.docker.network=traefik_webgateway"
 
   mysql:
-    extends:
-      file: ../default/docker-compose.yml
-      service: mysql
     container_name: allihoppa-nl-db-dev
+    image: allihoppa/mysql:5.7
     user: $HOST_UID:$HOST_GID
     environment:
       MYSQL_DATABASE_HOST: localhost
@@ -64,9 +73,9 @@ services:
 
   selenium-chrome:
     container_name: allihoppa-nl-selenium-chrome-dev
-    extends:
-      file: ../ci/docker-compose.yml
-      service: selenium-chrome
+    image: selenium/standalone-chrome:3.3
+    volumes:
+
     # X windows cannot run as root
     user: $HOST_UID:$HOST_GID
     environment:
@@ -78,6 +87,7 @@ services:
     volumes:
       - ../../docker/service/selenium-chrome/entry_point-x11.sh:/opt/bin/entry_point.sh:ro
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - ../../tests/Resources/uploads:/tmp/uploads
 
   mail:
     image: schickling/mailcatcher

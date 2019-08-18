@@ -17,10 +17,8 @@ services:
     hostname: ci.allihoppa.localhost
 
   mysql:
-      extends:
-        file: ../default/docker-compose.yml
-        service: mysql
       container_name: allihoppa-nl-db-ci
+      image: allihoppa/mysql:5.7
       user: ${DEPLOY_UID}:${DEPLOY_GID}
       volumes:
         - ./db/init:/docker-entrypoint-initdb.d
@@ -36,9 +34,7 @@ services:
     working_dir: /var/www
 
   selenium-chrome:
-    extends:
-      file: ../default/docker-compose.yml
-      service: selenium-chrome
+    image: selenium/standalone-chrome:3.3
     container_name: allihoppa-nl-selenium-chrome-ci
     # X windows cannot run as root
     user: ${HOST_UID}:${HOST_GID}
@@ -47,6 +43,7 @@ services:
     # Chrome needs to have a home dir it can write to
     tmpfs:
       - /home:uid=${HOST_UID}
+      - /tmp/uploads:uid=${HOST_UID}
 
   mail:
     image: schickling/mailcatcher

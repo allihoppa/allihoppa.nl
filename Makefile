@@ -75,10 +75,10 @@ docker-dist-image: docker-base-images
 		~/.npm
 
 	docker-compose \
-		-f environment/default/docker-compose.yml \
+		-f environment/dev/docker-compose.yml \
 		run --rm \
 		--workdir=/var/www/$(TMP_DIST_BUILD_DIR) \
-		app-dev \
+		app \
 			composer install \
 			--prefer-dist \
 			--ansi \
@@ -87,7 +87,7 @@ docker-dist-image: docker-base-images
 			--optimize-autoloader \
 
 	docker-compose \
-		-f environment/default/docker-compose.yml \
+		-f environment/dev/docker-compose.yml \
 		run --rm \
 		--workdir=/workspace/$(TMP_DIST_BUILD_DIR) \
 		js-build \
