@@ -41,12 +41,11 @@ quickstart:
 start: docker-base-images quickstart
 
 .PHONY: docker-base-images
-docker-base-images: ENV=default
 docker-base-images:
-	$(DOCKER_COMPOSE) build mysql
-	$(DOCKER_COMPOSE) build app-base
-	$(DOCKER_COMPOSE) build app-dev
-	$(DOCKER_COMPOSE) build js-build
+	docker build -t allihoppa/mysql:5.7 docker/service/mysql
+	docker build -t allihoppa/allihoppa.nl:base docker/service/app/base
+	docker build -t allihoppa/allihoppa.nl:dev docker/service/app/dev
+	docker build -t allihoppa/allihoppa.nl:js-build docker/js-build
 
 .PHONY: docker-dist-image
 docker-dist-image: docker-base-images

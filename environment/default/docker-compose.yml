@@ -4,8 +4,6 @@ services:
   js-build:
     container_name: allihoppa-nl-js-build
     image: allihoppa/allihoppa.nl:js-build
-    build:
-      context: ../../docker/js-build
     environment:
       HOME: /tmp
     user: $HOST_UID:$HOST_GID
@@ -17,15 +15,8 @@ services:
       # Workspace
       - ../../:/workspace/
 
-  app-base:
-    image: allihoppa/allihoppa.nl:base
-    build:
-      context: ../../docker/service/app/base
-
   app-dev:
     image: allihoppa/allihoppa.nl:dev
-    build:
-      context: ../../docker/service/app/dev
     user: $HOST_UID:$HOST_GID
     volumes:
       - ../../:/var/www
@@ -39,8 +30,6 @@ services:
   mysql:
     container_name: allihoppa-nl-mysql
     image: allihoppa/mysql:5.7
-    build:
-      ../../docker/service/mysql
 
   selenium-chrome:
     image: selenium/standalone-chrome:3.3
