@@ -1,0 +1,28 @@
+# Allows debugging system test by showing selenium clicking trough the app during test
+# Also allows viewing the application directly via ci.allihoppa.localhost
+
+version: "2"
+
+networks:
+  traefik:
+    external:
+      name: traefik_webgateway
+
+services:
+  app:
+    networks:
+      default:
+      traefik:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=allihoppa-ci"
+      - "traefik.frontend.rule=Host:ci.allihoppa.localhost"
+      - "traefik.port=8000"
+      - "traefik.docker.network=traefik_webgateway"
+
+  selenium-chrome:
+      environment:
+        DISPLAY: $DISPLAY
+      volumes:
+        - ../../docker/service/selenium-chrome/entry_point-x11.sh:/opt/bin/entry_point.sh:ro
+        - /tmp/.X11-unix:/tmp/.X11-unix
