@@ -31,17 +31,18 @@ DOCKER_COMPOSE=docker-compose -f $(DOCKER_COMPOSE_FILES)
 
 .PHONY: help
 help:
-	@echo "run make start to start the project"
+	@echo "run make up to start the project"
 
 .PHONY: all
 all: docker-base-images docker-dist-image system-test
 
-.PHONY: quickstart
-quickstart:
+.PHONY: up
+up: docker-base-images
 	$(DOCKER_COMPOSE) up
 
-.PHONY: start
-start: docker-base-images quickstart
+.PHONY: down
+down:
+	$(DOCKER_COMPOSE) down
 
 .PHONY: docker-base-images
 docker-base-images:
