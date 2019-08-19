@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?allihoppa.nl [NC]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www|ci\.)?allihoppa\.(nl|localhost) [NC]
 RewriteRule \.(jpg|jpeg|png|gif)$ - [F,L]
 
 # Stop annoying Iemo from hotlinking
