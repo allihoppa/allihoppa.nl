@@ -12,6 +12,7 @@
 /environment/dev/db/init/*
 !/environment/dev/db/init/.gitkeep
 !/environment/dev/db/init/init.sh
+/environment/ci/app.log
 /node_modules
 /public/wordpress
 /public/wp-content/languages
