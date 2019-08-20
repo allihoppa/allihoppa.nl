@@ -161,3 +161,8 @@ docker-images-persistent:
 .PHONY: entrypoint-docker-compose
 entrypoint-docker-compose:
 	$(DOCKER_COMPOSE) $(ARGS)
+
+.PHONY: entrypoint-composer
+entrypoint-composer:
+	$(DOCKER_COMPOSE) run --rm --no-deps app \
+		composer -vvv --ansi $(ARGS)

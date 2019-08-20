@@ -1,2 +1,11 @@
 #!/usr/bin/env bash
-docker-compose -f environment/dev/docker-compose.yml run --rm app composer "$@"
+
+CURRENT_DIR=$(pwd)
+
+ARGS="$@" make \
+    --directory ${CURRENT_DIR} \
+    --no-builtin-rules \
+    --no-builtin-variables \
+    --no-print-directory \
+    --warn-undefined-variables \
+    entrypoint-composer
