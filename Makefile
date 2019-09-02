@@ -166,3 +166,13 @@ entrypoint-docker-compose:
 entrypoint-composer:
 	$(DOCKER_COMPOSE) run --rm --no-deps app \
 		composer -vvv --ansi $(ARGS)
+
+environment/ci/db/init/init.sql.tpl:
+	$(DOCKER_COMPOSE) run -e MYSQL_PWD=allihoppa --rm mysql \
+		mysqldump -d -h mysql -uallihoppa allihoppa \
+		> $@
+	$(DOCKER_COMPOSE) run -e MYSQL_PWD=allihoppa --rm mysql \
+		mysqldump --no-create-info -h mysql -uallihoppa allihoppa \
+			category_colors \
+			wp_options \
+		>> $@
