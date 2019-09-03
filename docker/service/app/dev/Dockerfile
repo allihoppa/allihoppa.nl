@@ -22,3 +22,4 @@ RUN apt-get update \
 
 # Add xdebug config
 COPY xdebug.ini /etc/php5/conf.d/xdebug-extra.ini
+COPY xdebug.ini /etc/php5/apache2/conf.d/20-xdebug-extra.ini
