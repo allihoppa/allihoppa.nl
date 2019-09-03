@@ -156,8 +156,6 @@ docker-images-persistent:
 	docker push allihoppa/allihoppa.nl:latest
 	docker push allihoppa/allihoppa.nl:${DOCKER_DEPLOY_TAG}
 
-
-
 .PHONY: entrypoint-docker-compose
 entrypoint-docker-compose:
 	$(DOCKER_COMPOSE) $(ARGS)
