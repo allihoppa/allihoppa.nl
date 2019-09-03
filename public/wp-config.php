@@ -70,9 +70,11 @@ define('WP_MAILSERVER_URL', 'mail.example.com');
 define('WP_MAILSERVER_LOGIN', 'login@example.com');
 define('WP_MAILSERVER_PASS', 'password');
 define('WP_MAILSERVER_PORT', 110);
+
 /** Absolute path to the WordPress directory. */
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
+}
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
