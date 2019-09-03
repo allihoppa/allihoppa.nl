@@ -112,9 +112,9 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @When I wait for until I can publish
+     * @When I wait until I can publish
      */
-    public function iWaitForUntilICanPublish()
+    public function iWaitUntilICanPublish()
     {
         $this->spin(function () {
             return $this->getSession()->getPage()->find('css', "a.submitdelete")->isVisible();

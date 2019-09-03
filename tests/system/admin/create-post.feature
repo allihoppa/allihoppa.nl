@@ -9,7 +9,7 @@ Feature: Main
     And I fill in "post_title" with "My Awesome Blog Post"
     And I fill in "Test post content" in WYSIWYG editor "content_ifr"
     When I press "Concept opslaan"
-    And I wait for until I can publish
+    And I wait until I can publish
     And I press "Publiceren"
     Then I wait for button "Bijwerken"
     When I follow "Bericht bekijken"
