@@ -14,7 +14,7 @@ const LOCALHOST = 'localhost';
 
 $table_prefix = 'wp_';
 define('WPLANG', 'nl_NL');
-define('WP_AUTO_UPDATE_CORE', false);
+define('WP_AUTOMATIC_UPDATER_DISABLED', false);
 convinceWordPressToUseHttpsProtocolInUrlsWhenBehindAnSslOffloadingProxy();
 function generateWpHome()
 {
