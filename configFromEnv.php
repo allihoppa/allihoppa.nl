@@ -21,3 +21,6 @@ define('WP_SMTP_ENCRYPTION', getenv('WP_SMTP_ENCRYPTION'));
 define('WP_SMTP_USER', getenv('WP_SMTP_USER'));
 define('WP_SMTP_PASSWORD', getenv('WP_SMTP_PASSWORD'));
 define('WP_SMTP_FROM', getenv('WP_SMTP_FROM'));
+define('WP_PVR_SETTINGS_GENERAL', serialize(array('verification_code' => getenv('WP_VERIFICATION_CODE'))));
+define('WORDPRESS_API_KEY', getenv('WORDPRESS_API_KEY'));
+
