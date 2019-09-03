@@ -1,4 +1,8 @@
 <?php
+if (isset($_SERVER['SERVER_PROTOCOL']) === false) {
+    $_SERVER['SERVER_PROTOCOL'] = 'cli';
+}
+
 $pathToConfig = __DIR__ . '/../private/configProduction.php';
 if (file_exists($pathToConfig)) {
     require_once $pathToConfig;
@@ -19,7 +23,7 @@ function generateWpHome()
             . $_SERVER['HTTP_X_FORWARDED_HOST'];
     }
 
-    $httpHostParts = parse_url($_SERVER['HTTP_HOST']);
+    $httpHostParts = isset($_SERVER['HTTP_HOST']) ? parse_url($_SERVER['HTTP_HOST']) : '';
 
     $host = !empty($httpHostParts['host']) ? $httpHostParts['host'] : LOCALHOST;
     $port = getenv('HTTP_PORT');
@@ -75,7 +79,7 @@ require_once(ABSPATH . 'wp-settings.php');
 
 function convinceWordPressToUseHttpsProtocolInUrlsWhenBehindAnSslOffloadingProxy()
 {
-    if ($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
         $_SERVER['HTTPS'] = true;
     }
 }
