@@ -178,4 +178,6 @@ environment/ci/db/init/init.sql.tpl:
 		mysqldump --no-create-info -h mysql -uallihoppa allihoppa \
 			category_colors \
 			wp_options \
+			wp_users \
+			wp_usermeta \
 		>> $@
