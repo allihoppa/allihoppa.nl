@@ -169,6 +169,9 @@ entrypoint-composer:
 
 environment/ci/db/init/init.sql.tpl:
 	$(DOCKER_COMPOSE) run -e MYSQL_PWD=allihoppa --rm mysql \
+		mysql -h mysql -uallihoppa allihoppa -e \
+		"DELETE FROM wp_options WHERE option_name LIKE '%transient%'"
+	$(DOCKER_COMPOSE) run -e MYSQL_PWD=allihoppa --rm mysql \
 		mysqldump -d -h mysql -uallihoppa allihoppa \
 		> $@
 	$(DOCKER_COMPOSE) run -e MYSQL_PWD=allihoppa --rm mysql \
