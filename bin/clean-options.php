@@ -9,6 +9,10 @@ foreach ($all as $result) {
     $prefixedConstantName = 'WP_' . $constantName;
 
     if (defined($constantName) || defined($prefixedConstantName)) {
-        $wpdb->query("DELETE FROM wp_options WHERE wp_options.option_name = '$result->option_name'");
+        $query = "DELETE FROM wp_options WHERE wp_options.option_name = '$result->option_name'";
+        $wpdb->query($query);
+        echo "Executed: $query" . PHP_EOL;
     }
 }
+
+
