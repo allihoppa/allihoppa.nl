@@ -57,8 +57,6 @@ define(
             14 => 'wp-pagenavi/wp-pagenavi.php',
             15 => 'wp-smtp-config/wp-smtp-config.php',
         )));
-define('WP_TEMPLATE', 'allihoppa');
-define('WP_STYLESHEET', 'allihoppa');
 define('WP_TIMEZONE_STRING', 'Europe/Amsterdam');
 define('WP_CURRENT_THEME', 'Allihoppa');
 
