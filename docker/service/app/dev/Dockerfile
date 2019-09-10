@@ -10,16 +10,15 @@ RUN apt-get update \
     && mv composer.phar /usr/local/bin/composer \
 
 # Install PHP Xdebug extension
-    && apt-get install -y php5-xdebug \
+    && apt-get install -y php-xdebug \
     && php -m | grep xdebug \
 
 # Install PHP Curl extension
-    && apt-get install -y php5-curl \
+    && apt-get install -y php7.0-curl \
     && php -m | grep curl \
 
 # Clear package cache
     && rm -rf /var/lib/apt/lists/*
 
 # Add xdebug config
-COPY xdebug.ini /etc/php5/conf.d/xdebug-extra.ini
-COPY xdebug.ini /etc/php5/apache2/conf.d/20-xdebug-extra.ini
+COPY xdebug.ini /etc/php/7.0/mods-available/xdebug.ini

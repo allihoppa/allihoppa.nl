@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER Lucas van Lierop <me@lucasvanlierop.nl>
 
@@ -10,11 +10,11 @@ ENV HTTP_PORT=8000
 RUN apt-get update && \
     apt-get install -y \
     apache2 \
-    php5 \
-    php5-cli \
-    libapache2-mod-php5 \
-    php5-gd \
-    php5-mysql
+    php7.0 \
+    php7.0-cli \
+    libapache2-mod-php7.0 \
+    php7.0-gd \
+    php7.0-mysqli
 
 # No default (SSL) vhosts required
 RUN rm /etc/apache2/sites-available/* \
@@ -44,10 +44,10 @@ RUN rm /etc/apache2/sites-available/* \
     && sed -i "s/80/${HTTP_PORT}/" /etc/apache2/ports.conf \
 
 # Disable dir listing
-    && a2dismod autoindex \
+    && a2dismod -f autoindex \
 
 # Disable sending info about PHP in HTTP Response headers
-    && sed -i 's/expose_php = On/expose_php = Off/' /etc/php5/apache2/php.ini
+    && sed -i 's/expose_php = On/expose_php = Off/' /etc/php/7.0/apache2/php.ini
 
 COPY apache-default-vhost.conf /etc/apache2/sites-available/000-default.conf
 
