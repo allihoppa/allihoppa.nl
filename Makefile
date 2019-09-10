@@ -44,8 +44,11 @@ up: docker-base-images
 down:
 	$(DOCKER_COMPOSE) down
 
+docker/service/app/base/wp:
+	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O $@
+
 .PHONY: docker-base-images
-docker-base-images:
+docker-base-images: docker/service/app/base/wp
 	docker build -t allihoppa/mysql:5.7 docker/service/mysql
 	docker build -t allihoppa/allihoppa.nl:base docker/service/app/base
 	docker build -t allihoppa/allihoppa.nl:dev docker/service/app/dev

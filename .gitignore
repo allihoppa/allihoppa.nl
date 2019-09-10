@@ -2,6 +2,7 @@
 /downloaded*
 /configProduction.php
 /docker/service/app/dist/build*
+/docker/service/app/base/wp
 !/environment/prod
 /environment/prod/*.env
 /environment/default/wordpress.secret.env
