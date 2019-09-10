@@ -166,6 +166,8 @@ entrypoint-composer:
 		composer -vvv --ansi $(ARGS)
 
 environment/ci/db/init/init.sql.tpl:
+	$(DOCKER_COMPOSE) run --rm --workdir /var/www/public app wp user update annelies --user_pass=test
+	$(DOCKER_COMPOSE) run --rm --workdir /var/www/public app wp user update admin --user_pass=test
 	$(DOCKER_COMPOSE) run -e MYSQL_PWD=allihoppa --rm mysql \
 		mysql -h mysql -uallihoppa allihoppa -e \
 		"DELETE FROM wp_options WHERE option_name LIKE '%transient%'"
