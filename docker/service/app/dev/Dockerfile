@@ -2,7 +2,7 @@ FROM allihoppa/allihoppa.nl:base
 
 # Install Composer + Git + Zip so it can fetch from various sources
 RUN apt-get update \
-    && apt-get install -y git zlib1g-dev php7.0-mbstring \
+    && apt-get install -y git zlib1g-dev php7.2-mbstring php7.2-zip \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
@@ -14,11 +14,11 @@ RUN apt-get update \
     && php -m | grep xdebug \
 
 # Install PHP Curl extension
-    && apt-get install -y php7.0-curl \
+    && apt-get install -y php7.2-curl \
     && php -m | grep curl \
 
 # Clear package cache
     && rm -rf /var/lib/apt/lists/*
 
 # Add xdebug config
-COPY xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
+COPY xdebug.ini /etc/php/7.2/mods-available/xdebug.ini

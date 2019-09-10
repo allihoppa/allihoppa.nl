@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 MAINTAINER Lucas van Lierop <me@lucasvanlierop.nl>
 
@@ -6,15 +6,16 @@ ENV APACHE_PID_FILE=/var/run/apache2.pid
 ENV APACHE_RUN_DIR=/var/run
 ENV APACHE_LOCK_DIR=/var/lock
 ENV HTTP_PORT=8000
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y \
     apache2 \
-    php7.0 \
-    php7.0-cli \
-    libapache2-mod-php7.0 \
-    php7.0-gd \
-    php7.0-mysqli
+    php7.2 \
+    php7.2-cli \
+    libapache2-mod-php7.2 \
+    php7.2-gd \
+    php7.2-mysqli
 
 # No default (SSL) vhosts required
 RUN rm /etc/apache2/sites-available/* \
@@ -47,7 +48,7 @@ RUN rm /etc/apache2/sites-available/* \
     && a2dismod -f autoindex \
 
 # Disable sending info about PHP in HTTP Response headers
-    && sed -i 's/expose_php = On/expose_php = Off/' /etc/php/7.0/apache2/php.ini
+    && sed -i 's/expose_php = On/expose_php = Off/' /etc/php/7.2/apache2/php.ini
 
 COPY apache-default-vhost.conf /etc/apache2/sites-available/000-default.conf
 
