@@ -2,7 +2,7 @@ FROM allihoppa/allihoppa.nl:base
 
 # Install Composer + Git + Zip so it can fetch from various sources
 RUN apt-get update \
-    && apt-get install -y git zlib1g-dev \
+    && apt-get install -y git zlib1g-dev php7.0-mbstring \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
