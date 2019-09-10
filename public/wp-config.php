@@ -23,9 +23,8 @@ function generateWpHome()
             . $_SERVER['HTTP_X_FORWARDED_HOST'];
     }
 
-    $httpHostParts = isset($_SERVER['HTTP_HOST']) ? parse_url($_SERVER['HTTP_HOST']) : '';
-
-    $host = !empty($httpHostParts['host']) ? $httpHostParts['host'] : LOCALHOST;
+    $scriptUriParts = isset($_SERVER['SCRIPT_URI']) ? parse_url($_SERVER['SCRIPT_URI']) : '';
+    $host = !empty($scriptUriParts['host']) ? $scriptUriParts['host'] : LOCALHOST;
     $port = getenv('HTTP_PORT');
 
     return "http://$host:$port";
