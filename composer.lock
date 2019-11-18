@@ -608,8 +608,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/akismet.2.6.1.zip",
-                "reference": "tags/2.6.1"
+                "url": "https://downloads.wordpress.org/plugin/akismet.2.6.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -645,8 +644,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.0.8.2.zip",
-                "reference": "tags/0.8.2"
+                "url": "https://downloads.wordpress.org/plugin/custom-post-type-ui.0.8.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -664,8 +662,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/page-excerpt.1.3.zip",
-                "reference": "tags/1.3"
+                "url": "https://downloads.wordpress.org/plugin/page-excerpt.1.3.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -683,8 +680,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/pinterest-verify.1.0.2.zip",
-                "reference": "tags/1.0.2"
+                "url": "https://downloads.wordpress.org/plugin/pinterest-verify.1.0.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -702,8 +698,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-thumbnail-editor.2.3.0.zip",
-                "reference": "tags/2.3.0"
+                "url": "https://downloads.wordpress.org/plugin/post-thumbnail-editor.2.3.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -739,8 +734,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/simple-page-ordering.2.2.zip",
-                "reference": "tags/2.2"
+                "url": "https://downloads.wordpress.org/plugin/simple-page-ordering.2.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -1636,28 +1630,25 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v2.8.27",
+            "version": "v3.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "fbeea992f0d30e3c400694c85f60c9bfd10454a3"
+                "reference": "f4a04433f82eb8ca58555d1b6375293fc7c90d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/fbeea992f0d30e3c400694c85f60c9bfd10454a3",
-                "reference": "fbeea992f0d30e3c400694c85f60c9bfd10454a3",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/f4a04433f82eb8ca58555d1b6375293fc7c90d18",
+                "reference": "f4a04433f82eb8ca58555d1b6375293fc7c90d18",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
-            },
-            "conflict": {
-                "symfony/expression-language": "<2.6"
+                "php": ">=5.5.9"
             },
             "require-dev": {
-                "symfony/config": "~2.2|~3.0.0",
-                "symfony/expression-language": "~2.6|~3.0.0",
-                "symfony/yaml": "~2.3.42|~2.7.14|~2.8.7|~3.0.7"
+                "symfony/config": "~2.8|~3.0",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/yaml": "~2.8.7|~3.0.7|~3.1.1|~3.2"
             },
             "suggest": {
                 "symfony/config": "",
@@ -1668,7 +1659,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -1695,7 +1686,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2017-08-10T14:42:21+00:00"
+            "time": "2017-01-28T00:04:57+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
